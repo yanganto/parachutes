@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ "${1}" == "H1" ]; then
+    xdotool mousemove --sync 960 1620 click 1 sleep 0.1
+fi
+if [ "${1}" == "H2" ]; then
+    xdotool mousemove --sync 1920 540 click 1 sleep 0.1
+fi
+if [ "${1}" == "H3" ]; then
+    xdotool mousemove --sync 2880 1620 click 1 sleep 0.1
+fi
+if [ "${1}" == "H4" ]; then
+    xdotool mousemove --sync 4380 1200 click 1 sleep 0.1
+fi
+
+find-cursor

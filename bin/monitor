@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+if [ "${1}" == "dual" ]; then
+	echo "dual screan set up debug"
+	# xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1 --rotate normal
+	xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1-1
+	exit 0
+fi
+
+if [ "${1}" == "vga" ]; then
+	echo "dual screan set up"
+    # HDMI to VGA only has 1024x768 resolution
+	xrandr --output VGA1 --mode 1024x768 --left-of eDP1 --rotate normal
+	exit 0
+fi
+
+if [ "${1}" == "dp" ]; then
+	echo "dual screan set up"
+	# xrandr --output eDP1 --pos 1920x1000 --output DP1 --pos 0x0 --mode 1920x1200 --rotate normal
+	xrandr --output DP1 --mode 1920x1200 --right-of eDP1 --rotate normal
+	exit 0
+fi
+
+if [ "${1}" == "iter" ]; then
+	echo "dual screan set up"
+	# xrandr --output VGA1 --mode 1920x1080 --right-of eDP1 --rotate right
+	xrandr --output eDP1 --pos 0x400 --output DP1 --pos 1920x0 --rotate left
+	exit 0
+fi
+
+if [ "${1}" == "project" ]; then
+	echo "dual screan set up"
+	xrandr --output HDMI-0  --mode 1024x768 --right-of eDP-1-1
+	exit 0
+fi
+
+if [ "${1}" == "mirror" ]; then
+	echo "mirror screan set up"
+	xrandr --output VGA1 --mode 1920x1080 --same-as eDP1
+	exit 0
+fi
+
+if [ "${1}" == "home" ]; then
+	# xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1-1 --output DP-1 --mode 1920x1080 --rotate right --right-of eDP-1-1
+	xrandr --output eDP-1-1 --mode 1920x1080 --pos 1920x1080 \
+            --output DP-1 --mode 1920x1080 --pos 0x1080 \
+            --output HDMI-0 --mode 1920x1080 --rotate inverted --pos 960x0 \
+            --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 3840x240
+            # --output DP-1 --mode 1920x1080 --rotate right --pos 3840x0
+            # --output DP-1 --mode 3840x2160 --rotate right --pos 3840x0
+	exit 0
+fi
+
+echo "monitor [profile]"
+echo "profile=dual, project, vga, dp, single, iter, mirror"
+

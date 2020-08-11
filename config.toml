@@ -1,0 +1,5 @@
+startup = [
+    "alias g  [arg] {git $arg}", 
+    "alias gp  [arg] {git push $arg}",
+    "format \"Wing of liberty,{$(char newline)}{$(char newline)}Heart of Lion,{$(char newline)}{$(char newline)}Robust of Gear\" | cowsay"
+]
