@@ -12,4 +12,4 @@ if [ "${1}" == "H4" ]; then
     xdotool mousemove --sync 4380 1200 click 1 sleep 0.1
 fi
 
-find-cursor
+find-cursor -c '#b5bd68' -w 500 -s 250 -d 50 -l 5
