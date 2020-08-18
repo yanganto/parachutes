@@ -3,4 +3,5 @@
 # Setup script for window manager
 echo "===> Angels  6 - window manager"
 
-sys | if $it.host.name == "Linux" {cp -r ./qtile ~/.config/qtile} {}
+sys | if $it.host.name == "Linux" {rm -r ~/.config/qtile } {}
+sys | if $it.host.name == "Linux" {cp -r ./qtile ~/.config} {}

@@ -20,10 +20,9 @@ if [ "${1}" == "dp" ]; then
 	exit 0
 fi
 
-if [ "${1}" == "iter" ]; then
-	echo "dual screan set up"
-	# xrandr --output VGA1 --mode 1920x1080 --right-of eDP1 --rotate right
-	xrandr --output eDP1 --pos 0x400 --output DP1 --pos 1920x0 --rotate left
+if [ "${1}" == "fst" ]; then
+	# xrandr --output VGA1 --mode 1920x1080 
+	xrandr --output HDMI-0 --mode 2560x1440 --left-of eDP-1-1
 	exit 0
 fi
 
