@@ -1,16 +1,20 @@
 #!/bin/bash
+#     H4 
+#   H1 H2 H3
 if [ "${1}" == "H1" ]; then
     xdotool mousemove --sync 960 1620 click 1 sleep 0.1
 fi
 if [ "${1}" == "H2" ]; then
-    xdotool mousemove --sync 1920 540 click 1 sleep 0.1
-fi
-if [ "${1}" == "H3" ]; then
     xdotool mousemove --sync 2880 1620 click 1 sleep 0.1
 fi
-if [ "${1}" == "H4" ]; then
+if [ "${1}" == "H3" ]; then
     xdotool mousemove --sync 4380 1200 click 1 sleep 0.1
 fi
+if [ "${1}" == "H4" ]; then
+    xdotool mousemove --sync 1920 540 click 1 sleep 0.1
+fi
+
+#  O1 O2
 if [ "${1}" == "O1" ]; then
     xdotool mousemove --sync 1280 720 click 1 sleep 0.1
 fi
