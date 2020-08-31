@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-echo "===> Take Off  - curl, vim, neovim, git, rust, rustup components"
+echo "===> Take Off  - curl, neovim, git, rustup, base-devel components"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [ -f /etc/redhat-release ]; then
@@ -11,16 +11,24 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
         exit 1
     elif [ -f /etc/arch-release ]; then
         echo "Arch Linux detected."
-        sudo pacman -Syu --needed --noconfirm git vim curl
-        sudo pacman -Syu --needed --noconfirm neovim
+        sudo pacman -Syu --needed --noconfirm git curl rustup neovim base-devel
     elif [ -f /etc/mandrake-release ]; then
         echo "Mandrake Linux detected, but current not support sorry."
         exit 1
     elif [ -f /etc/debian_version ]; then
         echo "Ubuntu/Debian Linux detected."
         sudo apt-get -y update
-        sudo apt-get install -y git vim curl
-        sudo apt-get install -y neovim
+        sudo apt-get install -y git curl rustup neovim build-essential
+    elif [ -f /etc/nix/nix.conf ]; then
+        echo "NixOS Linux detected."
+	cmd=("git" "nvim" "curl" "rustup")
+	for ((i=0; i < ${#cmd[@]}; i++))
+	do
+		if ! which ${cmd[$i]}; then
+			echo "please install ${cmd[$i]} first"
+			exit 1 
+		fi
+	done
     else
         echo "Unknown Linux distribution."
         exit 1

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Build up a uniform shell and terminal
 echo "===> Angels 10 - rustfmt clippy nu alacritty"
@@ -9,6 +9,8 @@ rustup component add rustfmt
 rustup component add clippy
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    mkdir ~/bin
+
     if ! [[ `which nu` ]]; then
         cargo install nu --root ~/bin
     fi 
@@ -23,6 +25,10 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 else
     echo "Unknown operating system."
 fi
+
+PATH=$PATH:$(realpath ~/bin)
+
+echo $PATH
 
 # Set up terminal config and script
 nu angels_9.sh
