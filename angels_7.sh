@@ -1,6 +1,6 @@
-#!/usr/bin/nu
+#!/usr/bin/env nu
 
 # Setup script for window manager
-echo "===> Angels  7 - text editor"
+format "===> Angels  7 - text editor{$(char newline)}"
 
 sys | if $it.host.name == "Linux" {cp -r ./nvim ~/.config/nvim} {}

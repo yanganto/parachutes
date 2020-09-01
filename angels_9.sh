@@ -1,4 +1,4 @@
-#!/usr/bin/nu
+#!/usr/bin/env nu
 
 # Copy the config files used in cli
 format "===> Angels  9 {$(char newline)}"
