@@ -28,13 +28,13 @@ fi
 
 if [ "${1}" == "project" ]; then
 	echo "dual screan set up"
-	xrandr --output HDMI-0  --mode 1024x768 --right-of eDP-1-1
+	xrandr --output HDMI-1-1  --mode 1920x1080 --right-of eDP-1-1
 	exit 0
 fi
 
 if [ "${1}" == "mirror" ]; then
 	echo "mirror screan set up"
-	xrandr --output VGA1 --mode 1920x1080 --same-as eDP1
+	xrandr --output HDMI-1-1 --mode 1920x1080 --same-as eDP1-1-1
 	exit 0
 fi
 
@@ -57,5 +57,4 @@ if [ "${1}" == "home" ]; then
 fi
 
 echo "monitor [profile]"
-echo "profile=dual, project, vga, dp, single, iter, mirror"
-
+echo "profile=dual, project, vga, dp, fst, home, mirror"

@@ -1,17 +1,17 @@
-#!/bin/bash
-#     H4 
+#!/usr/bin/env bash
+#           H4
 #   H1 H2 H3
 if [ "${1}" == "H1" ]; then
-    xdotool mousemove --sync 960 1620 click 1 sleep 0.1
+    xdotool mousemove --sync 540 960 click 1 sleep 0.1
 fi
 if [ "${1}" == "H2" ]; then
-    xdotool mousemove --sync 2880 1620 click 1 sleep 0.1
+    xdotool mousemove --sync 2040 1620 click 1 sleep 0.1
 fi
 if [ "${1}" == "H3" ]; then
-    xdotool mousemove --sync 4380 1200 click 1 sleep 0.1
+    xdotool mousemove --sync 3960 1620 click 1 sleep 0.1
 fi
 if [ "${1}" == "H4" ]; then
-    xdotool mousemove --sync 1920 540 click 1 sleep 0.1
+    xdotool mousemove --sync 4920 540 click 1 sleep 0.1
 fi
 
 #  O1 O2
