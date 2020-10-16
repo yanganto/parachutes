@@ -39,9 +39,13 @@ if [ "${1}" == "mirror" ]; then
 fi
 
 if [ "${1}" == "home" ]; then
-    monitors=`xrandr --listmonitors | head -n 1`;
-    if [ "${monitors}" == "Monitors: 2" ]; then
+    monitors=`xrandr --listmonitors | head -n 1 | awk -F':' '{print $2}' | sed -e 's/\s//'`;
+    if [ "${monitors}" == "2" ]; then
         xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
+                --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
+    elif [ "${monitors}" == "3" ]; then
+        xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
+                --output HDMI-0  --mode 1920x1080 --pos 3000x1080 --rotate normal \
                 --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
     else
         xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
