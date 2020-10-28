@@ -12,3 +12,8 @@ sys | if $it.host.name == "Linux" {cp alacritty.yml ~/.config/alacritty/} {}
 
 format "     Setup personal script{$(char newline)}"
 sys | if $it.host.name == "Linux" {cp -r ./bin ~/} {}
+
+
+sys | if $it.host.version =~ "NixOS" {format "     Setup nix user packages{$(char newline)}"} {}
+sys | if $it.host.version =~ "NixOS" {cp -r nixpkgs ~/.config} {}
+sys | if $it.host.version =~ "NixOS" {nix-env -iA nixos.find-cursor nixos.nix-folder2channel} {}
