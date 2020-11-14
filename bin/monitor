@@ -1,35 +1,35 @@
 #!/usr/bin/env bash
 
 echo ${1} > /tmp/screens
-
+rc=1
 if [ "${1}" == "dual" ]; then
 	echo "dual screen set up debug"
 	xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1-1
-	exit 0
+	rc=0
 fi
 
 if [ "${1}" == "vga" ]; then
 	echo "dual screen vga set up"
 	xrandr --output VGA1 --mode 1024x768 --left-of eDP1 --rotate normal
-	exit 0
+	rc=0
 fi
 
 if [ "${1}" == "dp" ]; then
 	echo "dual screen dp set up"
 	xrandr --output DP1 --mode 1920x1200 --right-of eDP1 --rotate normal
-	exit 0
+	rc=0
 fi
 
 if [ "${1}" == "project" ]; then
 	echo "dual screen projector set up"
 	xrandr --output HDMI-1-1  --mode 1920x1080 --right-of eDP-1-1
-	exit 0
+	rc=0
 fi
 
 if [ "${1}" == "mirror" ]; then
 	echo "mirror screen mirror set up"
 	xrandr --output HDMI-1-1 --mode 1920x1080 --same-as eDP1-1-1
-	exit 0
+	rc=0
 fi
 
 if [ "${1}" == "home" ]; then
@@ -47,8 +47,13 @@ if [ "${1}" == "home" ]; then
                 --output DP-1 --mode 1920x1080 --rotate inverted --pos 3960x0 \
                 --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
     fi
-	exit 0
+	rc=0
 fi
-
-echo "monitor [profile]"
-echo "profile=dual, project, vga, dp, fst, home, mirror"
+if [ $rc == 0 ]; then
+    echo "set up background"
+    feh --bg-tile ~/.config/qtile/black_woven_seamless_tile.jpg
+else
+    echo "monitor [profile]"
+    echo "profile=dual, project, vga, dp, fst, home, mirror"
+fi
+exit $rc

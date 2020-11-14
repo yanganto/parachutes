@@ -6,7 +6,7 @@ sys | if $it.host.name == "Linux" {mkdir ~/.config/alacritty} {}
 sys | if $it.host.name == "Linux" {cp alacritty.yml ~/.config/alacritty/} {}
 
 format "     Setup personal script{$(char newline)}"
-sys | if $it.host.name == "Linux" {cp -r ./bin ~/.usr} {}
+sys | if $it.host.name == "Linux" {cp -r ./bin ~/.usr/} {}
 
 sys | if $it.host.version =~ "NixOS" {format "     Setup nix user packages{$(char newline)}"} {}
 sys | if $it.host.version =~ "NixOS" {cp -r nixpkgs ~/.config} {}

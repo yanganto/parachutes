@@ -1,6 +1,5 @@
 {
   packageOverrides = pkgs: rec {
-    find-cursor = pkgs.callPackage ./find-cursor {};
     nix-folder2channel = pkgs.callPackage ./nix-folder2channel {};
     nvidia-xrun = pkgs.callPackage ./nvidia-xrun {
       inherit (pkgs.linuxPackages) nvidia_x11 bbswitch;
