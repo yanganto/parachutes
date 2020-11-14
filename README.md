@@ -13,4 +13,4 @@ A tool to build up my formal developing environment
 | Angels  4 | nu   | setup cloud service relating |
 | Angels  3 | nu   | setup python relating tool   |
 | Angels  2 | nu   | setup minor cli tool         |
-
+| Angels  1 | nu   | setup small also important   |
