@@ -9,9 +9,10 @@ rustup component add rustfmt
 rustup component add clippy
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    mkdir ~/.local/bin
-    mkdir ~/.cargo/bin
-    mkdir ~/.usr/bin
+    mkdir -p ~/.local/bin
+    mkdir -p ~/.cargo/bin
+    mkdir -p ~/.usr/bin
+    mkdir -p ~/.config/template
 
     if ! [[ `which nu` ]]; then
         cargo install nu --root

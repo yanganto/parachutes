@@ -1,39 +1,33 @@
 #!/usr/bin/env bash
+
+echo ${1} > /tmp/screens
+
 if [ "${1}" == "dual" ]; then
-	echo "dual screan set up debug"
-	# xrandr --output HDMI1 --mode 1920x1080 --left-of eDP1 --rotate normal
+	echo "dual screen set up debug"
 	xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1-1
 	exit 0
 fi
 
 if [ "${1}" == "vga" ]; then
-	echo "dual screan set up"
-    # HDMI to VGA only has 1024x768 resolution
+	echo "dual screen vga set up"
 	xrandr --output VGA1 --mode 1024x768 --left-of eDP1 --rotate normal
 	exit 0
 fi
 
 if [ "${1}" == "dp" ]; then
-	echo "dual screan set up"
-	# xrandr --output eDP1 --pos 1920x1000 --output DP1 --pos 0x0 --mode 1920x1200 --rotate normal
+	echo "dual screen dp set up"
 	xrandr --output DP1 --mode 1920x1200 --right-of eDP1 --rotate normal
 	exit 0
 fi
 
-if [ "${1}" == "fst" ]; then
-	# xrandr --output VGA1 --mode 1920x1080 
-	xrandr --output HDMI-0 --mode 2560x1440 --right-of eDP-1-1
-	exit 0
-fi
-
 if [ "${1}" == "project" ]; then
-	echo "dual screan set up"
+	echo "dual screen projector set up"
 	xrandr --output HDMI-1-1  --mode 1920x1080 --right-of eDP-1-1
 	exit 0
 fi
 
 if [ "${1}" == "mirror" ]; then
-	echo "mirror screan set up"
+	echo "mirror screen mirror set up"
 	xrandr --output HDMI-1-1 --mode 1920x1080 --same-as eDP1-1-1
 	exit 0
 fi
