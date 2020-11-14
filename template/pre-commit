@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	against=$(git hash-object -t tree /dev/null)
+fi
+
+allownonascii=$(git config --type=bool hooks.allownonascii)
+
+exec 1>&2
+
+if [ "$allownonascii" != "true" ] &&
+	test $(git diff --cached --name-only --diff-filter=A -z $against |
+	  LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+then
+	cat <<\EOF
+Error: Attempt to add a non-ASCII file name.
+
+This can cause problems if you want to work with people on other platforms.
+
+To be portable it is advisable to rename the file.
+
+If you know what you are doing you can disable this check using:
+
+  git config hooks.allownonascii true
+EOF
+	exit 1
+fi
+
+SuccessMsg() {
+    echo -e "\e[38;5;82m[SUCCESS]\e[0m $1"
+}
+ErrorMsg() {
+    echo -e "\e[38;5;196m[ERROR]\e[0m $1"
+}
+
+problem_files=()
+
+for file in $(git diff --name-only --cached); do
+    if [ ${file: -4} == ".nix" ]; then
+        nixpkgs-fmt --check $file
+        if [ $? != 0 ]; then
+            problem_files+=($file)
+            nixpkgs-fmt $file
+
+        fi
+    elif [ ${file: -3} == ".rs" ]; then
+        rustfmt --check $file
+        if [ $? != 0 ]; then
+            problem_files+=($file)
+        fi
+    fi
+done
+
+if [ ${#problem_files[@]} != 0 ]; then
+  ErrorMsg "Flowing files are formated please check:"
+  echo "${problem_files}"
+  exit 1
+fi
+SuccessMsg "Format ok"
+exec git diff-index --check --cached $against --
+
+
