@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, xorgserver, xinit, xrandr, nvidia_x11, mesa, makeWrapper, bbswitch}:
+{ lib, stdenv, fetchFromGitHub, xorgserver, xinit, xrandr, nvidia_x11, mesa, makeWrapper, bbswitch, acpi }:
 
 stdenv.mkDerivation rec {
   pname = "nvidia-xrun";
@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
     rev = "${version}";
     sha256 = "1waay559cnmrxp1qr3cdm63km392rcqp1l65idn08gxw3ndp1zq4";
   };
-  buildInputs = [ xorgserver xinit xrandr nvidia_x11 mesa makeWrapper bbswitch];
+  buildInputs = [ xorgserver xinit xrandr nvidia_x11 mesa makeWrapper bbswitch acpi ];
 
   installPhase = ''
     mkdir -p "$out/bin"
@@ -21,9 +21,11 @@ stdenv.mkDerivation rec {
     install -dm 555 "$out/etc/X11/nvidia-xorg.conf.d"
   '';
 
-  postInstall = let
-    path = stdenv.lib.makeBinPath [ xinit ];
-  in "wrapProgram $out/bin/nvidia-xrun --prefix PATH : ${path}";
+  postInstall =
+    let
+      path = stdenv.lib.makeBinPath [ xinit ];
+    in
+    "wrapProgram $out/bin/nvidia-xrun --prefix PATH : ${path}";
 
   meta = with lib; {
     description = ''These utility scripts aim to make the life easier for nvidia cards users.

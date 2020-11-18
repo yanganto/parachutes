@@ -47,7 +47,7 @@ for file in $(git diff --name-only --cached); do
 
         fi
     elif [ ${file: -3} == ".rs" ]; then
-        rustfmt --check $file
+        rustfmt --check --edition 2018 $file
         if [ $? != 0 ]; then
             problem_files+=($file)
         fi
