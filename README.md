@@ -6,7 +6,7 @@ A tool to build up my formal developing environment
 | Take Off  | sh   | Download essential           |
 | Angels 10 | sh   | Uniform the shell            |
 | Angels  9 | nu   | terminal config and script   |
-| Angels  8 | nu   | git relating tools           |
+| Angels  8 | nu   | git, hooks relating tools    |
 | Angels  7 | nu   | setup editor                 |
 | Angels  6 | nu   | setup Desktop related tool   |
 | Angels  5 | nu   | setup vpn relating tool      |
