@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if lefthook -h >/dev/null 2>&1
+then
+    lefthook run prepare-commit-msg $@
+fi

@@ -2,9 +2,9 @@
 
 if git rev-parse --verify HEAD >/dev/null 2>&1
 then
-	against=HEAD
+    against=HEAD
 else
-	against=$(git hash-object -t tree /dev/null)
+    against=$(git hash-object -t tree /dev/null)
 fi
 
 allownonascii=$(git config --type=bool hooks.allownonascii)
@@ -12,10 +12,10 @@ allownonascii=$(git config --type=bool hooks.allownonascii)
 exec 1>&2
 
 if [ "$allownonascii" != "true" ] &&
-	test $(git diff --cached --name-only --diff-filter=A -z $against |
-	  LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+    test $(git diff --cached --name-only --diff-filter=A -z $against |
+        LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
 then
-	cat <<\EOF
+    cat <<\EOF
 Error: Attempt to add a non-ASCII file name.
 
 This can cause problems if you want to work with people on other platforms.
@@ -59,6 +59,13 @@ if [ ${#problem_files[@]} != 0 ]; then
   echo "${problem_files}"
   exit 1
 fi
+
+# TODO: check by files with git diff
+if lefthook -h >/dev/null 2>&1
+then
+    lefthook run pre-commit $@
+fi
+
 SuccessMsg "Format ok"
 exec git diff-index --check --cached $against --
 

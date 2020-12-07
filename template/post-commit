@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# TODO: check by files with git diff
+if lefthook -h >/dev/null 2>&1
+then
+    lefthook run post-commit $@
+fi
+
+SuccessMsg "Post Commit OK"

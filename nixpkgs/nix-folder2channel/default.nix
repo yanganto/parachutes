@@ -2,7 +2,7 @@
 let
   nix-folder2channel-script = writeScriptBin "nix-folder2channel" ''
     #!${stdenv.shell}
-    if ! [ -f default.nix ]; then
+    if ! [ -f flake.nix ]; then
       echo Please run at root of nixpkgs
       exit 1
     fi
@@ -18,7 +18,8 @@ let
     nix-channel --list
   '';
 
-in {
+in
+{
   nix-folder2channel = buildEnv {
     name = "nix-folder2channel";
     paths = [ nix-folder2channel-script ];
