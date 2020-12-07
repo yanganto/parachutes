@@ -13,23 +13,22 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     mkdir -p ~/.cargo/bin
     mkdir -p ~/.usr/bin
     mkdir -p ~/.config/template
-
-    if ! [[ `which nu` ]]; then
-        cargo install nu --root
-    fi
-    if ! [[ `which alacritty` ]]; then
-        cargo install alacritty
-    fi
-    if ! [[ `which s3rs` ]]; then
-        cargo install s3rs
-    fi
-
     # TODO install/make nu-shell plugin for checksum
 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Handle nu alacritty for mac"
+    mkdir -p ~/.config/template
 else
     echo "Unknown operating system"
+fi
+
+if ! [[ `which nu` ]]; then
+    cargo install nu --root
+fi
+if ! [[ `which alacritty` ]]; then
+    cargo install alacritty
+fi
+if ! [[ `which s3rs` ]]; then
+    cargo install s3rs
 fi
 
 PATH=$PATH:$(realpath ~/.usr/bin):$(realpath ~/.cargo/bin):$(realpath ~/.cargo/bin)

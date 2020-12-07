@@ -4,6 +4,8 @@ echo "Wing of liberty,\n\nHeart of Lion,\n\nRobust of Gear" | cowsay
 echo ""
 tput rev
 
+setopt PROMPT_SUBST
+
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 function virtual_env_rpath () {
@@ -45,7 +47,13 @@ export EDITOR='nvim'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/.kube/_kubectl ] && source ~/.kube/_kubectl
+
 alias gu="gitui"
+alias g="git"
+alias gp="git push"
+alias ga="git add"
+alias gco="git checkout"
+alias gcp="git cherry-pick"
 
 [ -f ~/.zinit/bin ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 

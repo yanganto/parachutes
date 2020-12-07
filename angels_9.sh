@@ -12,8 +12,8 @@ sys | if $it.host.version =~ "NixOS" {format "     Setup nix user packages{$(cha
 sys | if $it.host.version =~ "NixOS" {cp -r nixpkgs ~/.config} {}
 sys | if $it.host.version =~ "NixOS" {nix-env -iA nixos.find-cursor nixos.nix-folder2channel} {}
 
-# TODO: Someday
-# sys | if $it.host.name == "Darwin" {} {}
+# sys | if $it.host.name == "Darwin" {nix-env -iA nixpkgs.find-cursor nixpkgs.nix-folder2channel} {}
+
 # TODO: windows no allow script to create folder in appdata ?
 # sys | if $it.host.name == "Windows" {mkdir `{{$nu.env.APPDATA}}\alacritty`} {}
 # sys | if $it.host.name == "Windows" {cp alacritty.yml `{{$nu.env.APPDATA}}\alacritty`} {}
