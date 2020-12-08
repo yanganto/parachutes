@@ -35,6 +35,7 @@ PATH=$PATH:$(realpath ~/.usr/bin):$(realpath ~/.cargo/bin):$(realpath ~/.cargo/b
 echo $PATH
 
 cp zshrc ~/.zshrc
+cp fzf.zsh ~/.fzf.zsh
 
 # Set up terminal config and script
 nu angels_9.sh
