@@ -7,6 +7,7 @@ tput rev
 setopt PROMPT_SUBST
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export ZSH_THEME_GIT_PROMPT_DIRTY="*"
 
 function virtual_env_rpath () {
     if [ ${#PWD} -gt ${#VIRTUAL_ENV} ]; then
