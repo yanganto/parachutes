@@ -3,33 +3,33 @@
 echo ${1} > /tmp/screens
 rc=1
 if [ "${1}" == "dual" ]; then
-	echo "dual screen set up debug"
-	xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1-1
-	rc=0
+    echo "dual screen set up debug"
+    xrandr --output HDMI-0 --mode 1920x1080 --left-of eDP-1-1
+    rc=0
 fi
 
 if [ "${1}" == "vga" ]; then
-	echo "dual screen vga set up"
-	xrandr --output VGA1 --mode 1024x768 --left-of eDP1 --rotate normal
-	rc=0
+    echo "dual screen vga set up"
+    xrandr --output VGA1 --mode 1024x768 --left-of eDP1 --rotate normal
+    rc=0
 fi
 
 if [ "${1}" == "dp" ]; then
-	echo "dual screen dp set up"
-	xrandr --output DP1 --mode 1920x1200 --right-of eDP1 --rotate normal
-	rc=0
+    echo "dual screen dp set up"
+    xrandr --output DP1 --mode 1920x1200 --right-of eDP1 --rotate normal
+    rc=0
 fi
 
 if [ "${1}" == "project" ]; then
-	echo "dual screen projector set up"
-	xrandr --output HDMI-1-1  --mode 1920x1080 --right-of eDP-1-1
-	rc=0
+    echo "dual screen projector set up"
+    xrandr --output HDMI-1-1  --mode 1920x1080 --right-of eDP-1-1
+    rc=0
 fi
 
 if [ "${1}" == "mirror" ]; then
-	echo "mirror screen mirror set up"
-	xrandr --output HDMI-1-1 --mode 1920x1080 --same-as eDP1-1-1
-	rc=0
+    echo "mirror screen mirror set up"
+    xrandr --output HDMI-1-1 --mode 1920x1080 --same-as eDP1-1-1
+    rc=0
 fi
 
 if [ "${1}" == "home" ]; then
@@ -39,15 +39,15 @@ if [ "${1}" == "home" ]; then
                 --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
     elif [ "${monitors}" == "3" ]; then
         xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
-                --output HDMI-0  --mode 1920x1080 --pos 3000x1080 --rotate normal \
-                --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
-    else
-        xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
-                --output HDMI-0  --mode 1920x1080 --pos 3000x1080 --rotate normal \
-                --output DP-1 --mode 1920x1080 --rotate inverted --pos 3960x0 \
-                --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
+                --output HDMI-1-1 --mode 1920x1080 --pos 3000x1080 --rotate inverted \
+                --output DP-1 --mode 1920x1080 --rotate left --pos 0x0
+    # else
+    #     xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
+    #             --output HDMI-0  --mode 1920x1080 --pos 3000x1080 --rotate normal \
+    #             --output DP-1 --mode 1920x1080 --rotate inverted --pos 3960x0 \
+    #             --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
     fi
-	rc=0
+    rc=0
 fi
 if [ $rc == 0 ]; then
     echo "set up background"
