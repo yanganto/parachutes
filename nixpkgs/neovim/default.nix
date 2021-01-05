@@ -57,7 +57,7 @@ stdenv.mkDerivation rec {
     owner = "neovim";
     repo = "neovim";
     rev = "nightly";
-    sha256 = "0vpjdd32lgzyh85gyazqpms8vmaad6px3zx2svdxhvcdxgschqz9";
+    sha256 = "1k331h982blj402nvkn5hp2yaq639c084q95awkkqby4qsajyyyi";
   };
 
   patches = [
