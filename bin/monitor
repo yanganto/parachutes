@@ -8,6 +8,12 @@ if [ "${1}" == "dual" ]; then
     rc=0
 fi
 
+if [ "${1}" == "kn" ]; then
+    echo "dual screen set up debug"
+    xrandr --output HDMI-0 --mode 2560x1440 --left-of eDP-1-1
+    rc=0
+fi
+
 if [ "${1}" == "vga" ]; then
     echo "dual screen vga set up"
     xrandr --output VGA1 --mode 1024x768 --left-of eDP1 --rotate normal
