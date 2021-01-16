@@ -12,7 +12,13 @@
       lua = pkgs.luajit;
     };
     neovimUtils = pkgs.callPackage ./neovim/utils.nix { };
-    neovim = pkgs.wrapNeovim neovim-unwrapped { };
+    neovim = pkgs.wrapNeovim neovim-unwrapped {
+      extraPython3Packages = (ps: with ps;[
+        googletrans
+        simple-websocket-server
+        python-slugify
+      ]);
+    };
 
     # Some note for building Rust packages
     # rust_1_46 = pkgs.callPackage ./rust_146.nix {
