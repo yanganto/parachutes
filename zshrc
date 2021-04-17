@@ -18,6 +18,7 @@ function virtual_env_rpath () {
         echo " - ${$(pwd)#$VIRTUAL_ENV}"
     fi
 }
+
 function virtual_env_path () {
     echo ${VIRTUAL_ENV:-}
 }
@@ -28,6 +29,18 @@ function virtual_env_promp () {
     else
         echo $(python --version);
     fi
+}
+
+function secho() {
+    echo -e "\e[38;5;82m[SUCCESS]\e[0m $1"
+}
+
+function eecho() {
+    echo -e "\e[38;5;196m[ERROR]\e[0m $1"
+}
+
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
 PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;32m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;36m%}%m%{\e[0;34m%}%B]%b%{\e[0m%} - %b%{\e[0;34m%}%B[$(virtual_env_path)%b%{\e[1;37m%}% $(virtual_env_rpath)%{\e[0;34m%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%a %b %d, %H:%M"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
@@ -86,3 +99,39 @@ zinit snippet OMZL::git.zsh
 eval "$(direnv hook zsh)"
 
 [ -f ~/.my.zsh ] && source ~/.my.zsh
+
+# Defined these arrays to check
+# HOST_CHECK_LIST WEB_CHECK_LIST
+
+server_info=/tmp/server_info
+server_error=/tmp/server_error
+
+if [ -f $server_info ]; then
+    if [ -f $server_error ]; then
+        eecho "Looks bad at `ls -l /tmp/server_info | awk '{print $8}'`"
+        cat $server_info
+    else
+        secho "Looks great at `ls -l /tmp/server_info | awk '{print $8}'`"
+    fi
+else
+    for host in $HOST_CHECK_LIST; do
+        echo $host >> $server_info
+        ping -c 1 $host >>  $server_info
+        if [ $? -eq 0 ]; then
+            secho "$host server ready"
+        else
+            touch $server_error
+            eecho "$host server down"
+        fi
+    done
+
+    for web in $WEB_CHECK_LIST; do
+        curl --head $web >> $server_info
+        if [ $? -eq 0 ]; then
+            secho "$web ready"
+        else
+            touch $server_error
+            eecho "$web Web down"
+        fi
+    done
+fi
