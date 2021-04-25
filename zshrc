@@ -124,7 +124,7 @@ if [ -f $server_info ]; then
         eecho "Looks bad at `ls -l /tmp/server_info | awk '{print $8}'`"
         cat $server_info
     else
-        secho "Looks great at `ls -l /tmp/server_info | awk '{print $8}'`"
+        secho "Server Looks great at `ls -l /tmp/server_info | awk '{print $8}'`"
     fi
 else
     for host in $HOST_CHECK_LIST; do
@@ -148,3 +148,41 @@ else
         fi
     done
 fi
+
+outdate_packages=/tmp/outdate_packages.txt
+function ghTagCheck() {
+    catch_file=/tmp/tag-check-${1}-${2}
+    if [ ! -f $catch_file ]; then
+        curl -s https://github.com/${1}/${2}/releases \
+            | hxnormalize -x  \
+            | hxselect -s '\n' -c "span.css-truncate-target" \
+            | head -n 1 \
+            > $catch_file
+    fi
+
+    version=$(cat $catch_file)
+
+    if [ $version != $3 ]; then
+        eecho "The package for ${1}/${2} ($3) is out of update, current is $version"
+        echo "${1}/${2} ${3} -> $version" >> $outdate_packages
+    fi
+}
+
+ghTagCheck "soywod" "himalaya" "v0.2.7"
+ghTagCheck "extrawurst" "gitui" "v0.14.0"
+ghTagCheck "qarmin" "czkawka" "3.0.0"
+
+# TODO handle manually tags here
+# tagCheck "acj" "krapslog" "0.1.2"
+# tagCheck "arp242" "find-cursor" "v1.6"
+
+if [ -f $outdate_packages ]; then
+    eecho "Packages out of date"
+    cat $outdate_packages
+else
+    secho "All package updated"
+fi
+
+fpath=(~/.zsh/functions $fpath)
+autoload -Uz compinit
+compinit -u
