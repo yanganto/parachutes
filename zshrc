@@ -169,7 +169,7 @@ function ghTagCheck() {
 }
 
 ghTagCheck "soywod" "himalaya" "v0.2.7"
-ghTagCheck "extrawurst" "gitui" "v0.14.0"
+ghTagCheck "extrawurst" "gitui" "v0.15.0"
 ghTagCheck "qarmin" "czkawka" "3.0.0"
 
 # TODO handle manually tags here
