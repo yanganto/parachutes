@@ -79,6 +79,7 @@ alias gu="gitui"
 alias g="git"
 alias gp="git push"
 alias ga="git add"
+alias gc="git commit"
 alias gco="git checkout"
 alias gcp="git cherry-pick"
 
