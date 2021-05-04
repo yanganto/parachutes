@@ -3,7 +3,7 @@
 let hostname = $(sys | get host.name)
 
 # Build up command line developing environment
-format "===> Angels  8 - gitui, gitconfig, developing hooks {$(char newline)}"
+build-string "===> Angels  8 - gitui, gitconfig, developing hooks " $(char nl)
 
 # setup config for gitconfig
 if $hostname != "Windows" {cp gitconfig ~/.gitconfig } {}

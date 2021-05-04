@@ -3,16 +3,16 @@
 let hostname = $(sys | get host.name)
 let nixversion = $(nix-env --version)
 
-format "===> Angels  9 {$(char newline)}"
-format "     Setup config for alacritty{$(char newline)}"
+build-string "===> Angels  9 " $(char nl)
+build-string "     Setup config for alacritty" $(char nl)
 
 if $hostname != "Windows" {mkdir ~/.config/alacritty} {}
 if $hostname != "Windows" {cp alacritty.yml ~/.config/alacritty/} {}
 
-format "     Setup personal script{$(char newline)}"
+build-string "     Setup personal script" $(char nl)
 if $hostname != "Windows" {cp -r ./bin ~/.usr/} {}
 
-if $nixversion =~ "nix-env" {format "     Setup nix user packages{$(char newline)}"} {}
+if $nixversion =~ "nix-env" {build-string "     Setup nix user packages" $(char nl)} {}
 if $nixversion =~ "nix-env" {cp -r nixpkgs ~/.config} {}
 if $nixversion =~ "nix-env" {nix-env -iA nixos.find-cursor nixos.nix-folder2channel} {}
 

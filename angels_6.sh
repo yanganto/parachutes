@@ -3,7 +3,7 @@
 let hostname = $(sys | get host.name)
 
 # Setup script for window manager
-format "===> Angels  6 - WM, IME{$(char newline)}"
+build-string "===> Angels  6 - WM, IME" $(char nl)
 
 sys | if $hostname != "Windows" && $hostname != "Darwin" {cp -r ./qtile ~/.config} {}
 

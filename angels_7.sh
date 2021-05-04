@@ -3,6 +3,6 @@
 let hostname = $(sys | get host.name)
 
 # Setup script for window manager
-format "===> Angels  7 - text editor{$(char newline)}"
+build-string "===> Angels  7 - text editor" $(char nl)
 
 if $hostname != "Windows" {cp -r ./nvim ~/.config/} {}
