@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+layout=`cat /tmp/screens`
+
 #           H4
-#   H1 H2 H3
+#   H1v H2 H3
 if [ "${1}" == "H1" ]; then
     xdotool mousemove --sync 540 960 click 1 sleep 0.1
 fi
@@ -14,12 +16,28 @@ if [ "${1}" == "H4" ]; then
     xdotool mousemove --sync 4920 540 click 1 sleep 0.1
 fi
 
-#  O1 O2
-if [ "${1}" == "O1" ]; then
-    xdotool mousemove --sync 1280 720 click 1 sleep 0.1
+if [ "$layout" == "kn" ]; then
+    #  O1 O2
+    if [ "${1}" == "O1" ]; then
+        xdotool mousemove --sync 1280 720 click 1 sleep 0.1
+    fi
+    if [ "${1}" == "O2" ]; then
+        xdotool mousemove --sync 3520 540 click 1 sleep 0.1
+    fi
 fi
-if [ "${1}" == "O2" ]; then
-    xdotool mousemove --sync 3520 540 click 1 sleep 0.1
+
+if [ "$layout" == "ss" ]; then
+    #  O1 O2v
+    #  O3
+    if [ "${1}" == "O1" ]; then
+        xdotool mousemove --sync 960 960 click 1 sleep 0.1
+    fi
+    if [ "${1}" == "O2" ]; then
+        xdotool mousemove --sync 2460 960 click 1 sleep 0.1
+    fi
+    if [ "${1}" == "O3" ]; then
+        xdotool mousemove --sync 960 2040 click 1 sleep 0.1
+    fi
 fi
 
 find-cursor -c '#b5bd68' -w 500 -s 250 -d 50 -l 5

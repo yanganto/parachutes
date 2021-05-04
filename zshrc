@@ -65,7 +65,7 @@ export GNUPGHOME=~/.gnupg/trezor
 # Rust
 export SCCACHE_DIR=~/data/sccache
 export RUSTC_WRAPPER=sccache
-export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.usr/bin
+export PATH=$PATH:$HOME/.cargo/bin:$HOME/.usr/bin
 
 
 export LANG=en_US.UTF-8
@@ -168,7 +168,7 @@ function ghTagCheck() {
     fi
 }
 
-ghTagCheck "soywod" "himalaya" "v0.2.7"
+ghTagCheck "soywod" "himalaya" "v0.3.0"
 ghTagCheck "extrawurst" "gitui" "v0.15.0"
 ghTagCheck "qarmin" "czkawka" "3.0.0"
 
