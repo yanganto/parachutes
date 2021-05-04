@@ -14,7 +14,6 @@ if $hostname != "Windows" {cp -r ./bin ~/.usr/} {}
 
 if $nixversion =~ "nix-env" {build-string "     Setup nix user packages" $(char nl)} {}
 if $nixversion =~ "nix-env" {cp -r nixpkgs ~/.config} {}
-if $nixversion =~ "nix-env" {nix-env -iA nixos.find-cursor nixos.nix-folder2channel} {}
 
 # sys | if $it.host.name == "Darwin" {nix-env -iA nixpkgs.find-cursor nixpkgs.nix-folder2channel} {}
 
