@@ -1,27 +1,12 @@
 #!/usr/bin/env bash
 layout=`cat /tmp/screens`
 
-#           H4
-#   H1v H2 H3
-if [ "${1}" == "H1" ]; then
-    xdotool mousemove --sync 540 960 click 1 sleep 0.1
-fi
-if [ "${1}" == "H2" ]; then
-    xdotool mousemove --sync 2040 1620 click 1 sleep 0.1
-fi
-if [ "${1}" == "H3" ]; then
-    xdotool mousemove --sync 3960 1620 click 1 sleep 0.1
-fi
-if [ "${1}" == "H4" ]; then
-    xdotool mousemove --sync 4920 540 click 1 sleep 0.1
-fi
-
 if [ "$layout" == "kn" ]; then
     #  O1 O2
-    if [ "${1}" == "O1" ]; then
+    if [ "${1}" == "1" ]; then
         xdotool mousemove --sync 1280 720 click 1 sleep 0.1
     fi
-    if [ "${1}" == "O2" ]; then
+    if [ "${1}" == "2" ]; then
         xdotool mousemove --sync 3520 540 click 1 sleep 0.1
     fi
 fi
@@ -29,14 +14,24 @@ fi
 if [ "$layout" == "ss" ]; then
     #  O1 O2v
     #  O3
-    if [ "${1}" == "O1" ]; then
+    if [ "${1}" == "1" ]; then
         xdotool mousemove --sync 960 960 click 1 sleep 0.1
     fi
-    if [ "${1}" == "O2" ]; then
+    if [ "${1}" == "2" ]; then
         xdotool mousemove --sync 2460 960 click 1 sleep 0.1
     fi
-    if [ "${1}" == "O3" ]; then
+    if [ "${1}" == "3" ]; then
         xdotool mousemove --sync 960 2040 click 1 sleep 0.1
+    fi
+fi
+
+if [ "$layout" == "dual" ]; then
+    #  O1 O2
+    if [ "${1}" == "1" ]; then
+        xdotool mousemove --sync 960 540 click 1 sleep 0.1
+    fi
+    if [ "${1}" == "2" ]; then
+        xdotool mousemove --sync 2880 540 click 1 sleep 0.1
     fi
 fi
 

@@ -3,4 +3,4 @@
 	url = git@github.com:yanganto/nvim.git
 [submodule "qtile"]
 	path = qtile
-	url = git@github.com:yanganto/qtile
+	url = git@github.com:yanganto/qtile.git
