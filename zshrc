@@ -169,9 +169,9 @@ function ghTagCheck() {
     fi
 }
 
-ghTagCheck "soywod" "himalaya" "v0.3.0"
+ghTagCheck "soywod" "himalaya" "v0.3.2"
 ghTagCheck "extrawurst" "gitui" "v0.15.0"
-ghTagCheck "qarmin" "czkawka" "3.0.0"
+ghTagCheck "qarmin" "czkawka" "3.1.0"
 
 # TODO handle manually tags here
 # tagCheck "acj" "krapslog" "0.1.2"
@@ -182,6 +182,13 @@ if [ -f $outdate_packages ]; then
     cat $outdate_packages
 else
     secho "All package updated"
+fi
+
+# Defined PLAN_FOLDER for your markdowm plans
+if [[ ! -z "${PLAN_FOLDER}" ]]; then
+    week_number=$(expr $(date +%U) + 1)
+    echo "Plan for week ${week_number}"
+    mdcat ${PLAN_FOLDER}/2021-week-${week_number}.md
 fi
 
 fpath=(~/.zsh/functions $fpath)
