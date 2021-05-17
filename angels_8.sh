@@ -10,7 +10,7 @@ build-string "===> Angels  8 - gitui, gitconfig, developing hooks " $(char nl)
 if $hostname != "Windows" {cp gitconfig ~/.gitconfig } {}
 
 # setup key config for gitui and install gitui
-if $hostname == "Windows" || {cargo install gitui} {}
+if $hostname == "Windows" {cargo install gitui} {}
 if $nixversion =~ "nix-env" && $hostname == "NixOS" {nix-env -iA nixos.gitAndTools.gitui} {}
 if $nixversion =~ "nix-env" && $hostname != "NixOS" {nix-env -iA nixpkgs.gitAndTools.gitui} {}
 

@@ -22,7 +22,7 @@ else
 fi
 
 if ! [[ `which nu` ]]; then
-    cargo install nu --root
+    cargo install nu
 fi
 if ! [[ `which alacritty` ]]; then
     cargo install alacritty
