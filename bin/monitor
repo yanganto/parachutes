@@ -8,6 +8,14 @@ if [ "${1}" == "dual" ]; then
     rc=0
 fi
 
+if [ "${1}" == "qudrual" ]; then
+    xrandr --output eDP-1-1 --mode 1920x1080 --pos 1920x1080 \
+            --output HDMI-0 --mode 1920x1080 --pos 0x540 \
+            --output DP-1 --mode 1920x1080 --pos 1920x0 \
+            --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 3840x0
+    rc=0
+fi
+
 if [ "${1}" == "kn" ]; then
     echo "dual screen set up debug"
     xrandr --output HDMI-0 --mode 2560x1440 --left-of eDP-1-1
@@ -38,28 +46,11 @@ if [ "${1}" == "mirror" ]; then
     rc=0
 fi
 
-if [ "${1}" == "home" ]; then
-    monitors=`xrandr --listmonitors | head -n 1 | awk -F':' '{print $2}' | sed -e 's/\s//'`;
-    if [ "${monitors}" == "2" ]; then
-        xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
-                --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
-    elif [ "${monitors}" == "3" ]; then
-        xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
-                --output HDMI-1-1 --mode 1920x1080 --pos 3000x1080 --rotate inverted \
-                --output DP-1 --mode 1920x1080 --rotate left --pos 0x0
-    # else
-    #     xrandr --output eDP-1-1 --mode 1920x1080 --pos 1080x1080 \
-    #             --output HDMI-0  --mode 1920x1080 --pos 3000x1080 --rotate normal \
-    #             --output DP-1 --mode 1920x1080 --rotate inverted --pos 3960x0 \
-    #             --output HDMI-1-1 --mode 1920x1080 --rotate left --pos 0x0
-    fi
-    rc=0
-fi
 if [ $rc == 0 ]; then
     echo "set up background"
     feh --bg-tile ~/.config/qtile/black_woven_seamless_tile.jpg
 else
     echo "monitor [profile]"
-    echo "profile=dual, project, vga, dp, fst, home, mirror"
+    echo "profile=dual, project, vga, dp, mirror, qudural"
 fi
 exit $rc
