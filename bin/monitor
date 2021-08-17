@@ -16,6 +16,14 @@ if [ "${1}" == "qudrual" ]; then
     rc=0
 fi
 
+if [ "${1}" == "travel" ]; then
+    xrandr --output eDP-1-1 --mode 1920x1080 --pos 1920x0 \
+            --output DP-1 --mode 1920x1080 --pos 0x0 \
+            --output HDMI-1-1 --mode 1920x1080 --rotate right --pos 3840x0
+    rc=0
+fi
+
+
 if [ "${1}" == "kn" ]; then
     echo "dual screen set up debug"
     xrandr --output HDMI-0 --mode 2560x1440 --left-of eDP-1-1
