@@ -27,9 +27,6 @@ fi
 if ! [[ `which alacritty` ]]; then
     cargo install alacritty
 fi
-if ! [[ `which s3rs` ]]; then
-    cargo install s3rs
-fi
 
 PATH=$PATH:$(realpath ~/.usr/bin):$(realpath ~/.cargo/bin):$(realpath ~/.cargo/bin)
 echo $PATH

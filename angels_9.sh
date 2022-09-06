@@ -1,23 +1,10 @@
-#!/usr/bin/env nu
+#!/usr/bin/env bash
 
-let hostname = $(sys | get host.name)
-let nixversion = $(nix-env --version)
+echo "===> Angels  9 "
+echo "     Setup config for alacritty"
 
-build-string "===> Angels  9 " $(char nl)
-build-string "     Setup config for alacritty" $(char nl)
+mkdir -p ~/.config/alacritty
+cp alacritty.yml ~/.config/alacritty/
 
-if $hostname != "Windows" {mkdir ~/.config/alacritty} {}
-if $hostname != "Windows" {cp alacritty.yml ~/.config/alacritty/} {}
-
-build-string "     Setup personal script" $(char nl)
-if $hostname != "Windows" {cp -r ./bin ~/.usr/} {}
-
-if $nixversion =~ "nix-env" {build-string "     Setup nix user packages" $(char nl)} {}
-if $nixversion =~ "nix-env" {cp -r nixpkgs ~/.config} {}
-
-# sys | if $it.host.name == "Darwin" {nix-env -iA nixpkgs.find-cursor nixpkgs.nix-folder2channel} {}
-
-# TODO: windows no allow script to create folder in appdata ?
-# sys | if $it.host.name == "Windows" {mkdir `{{$nu.env.APPDATA}}\alacritty`} {}
-# sys | if $it.host.name == "Windows" {cp alacritty.yml `{{$nu.env.APPDATA}}\alacritty`} {}
-
+echo "     Setup personal script"
+cp -r ./bin ~/.usr/

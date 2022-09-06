@@ -1,8 +1,7 @@
-#!/usr/bin/env nu
+#!/usr/bin/env bash
 
-let hostname = $(sys | get host.name)
+let hostname = (sys | get host.name)
 
-# Setup script for window manager
-build-string "===> Angels  7 - text editor" $(char nl)
-
-if $hostname != "Windows" {cp -r ./nvim ~/.config/} {}
+# Setup script for editor
+echo "===> Angels  7 - text editor"
+cp -r ./nvim ~/.config/

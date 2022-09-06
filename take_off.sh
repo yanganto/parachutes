@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-echo "===> Take Off  - curl, neovim, git, rustup, base-devel components"
+echo "===> Take Off  - curl, neovim, git, rustup, base-devel bash components"
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     if [ -f /etc/redhat-release ]; then
@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
         exit 1
     elif [ -f /etc/arch-release ]; then
         echo "Arch Linux detected."
-        sudo pacman -Syu --needed --noconfirm git curl rustup neovim base-devel
+        sudo pacman -Syu --needed --noconfirm git curl rustup neovim base-devel bash
     elif [ -f /etc/mandrake-release ]; then
         echo "Mandrake Linux detected, but current not support sorry."
         exit 1
