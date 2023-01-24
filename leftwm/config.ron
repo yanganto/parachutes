@@ -1,0 +1,118 @@
+// vim: expandtab syntax=rust
+//  _        ___                                      ___ _
+// | |      / __)_                                   / __|_)
+// | | ____| |__| |_ _ _ _ ____      ____ ___  ____ | |__ _  ____    ____ ___  ____
+// | |/ _  )  __)  _) | | |    \    / ___) _ \|  _ \|  __) |/ _  |  / ___) _ \|  _ \
+// | ( (/ /| |  | |_| | | | | | |  ( (__| |_| | | | | |  | ( ( | |_| |  | |_| | | | |
+// |_|\____)_|   \___)____|_|_|_|   \____)___/|_| |_|_|  |_|\_|| (_)_|   \___/|_| |_|
+// A WindowManager for Adventurers                         (____/
+// For info about configuration please visit https://github.com/leftwm/leftwm/wiki
+
+#![enable(implicit_some)]
+(
+    modkey: "Mod4",
+    mousekey: "Mod4",
+    workspaces: [],
+    tags: [ "1", "2", "3", "4", "5", ],
+    max_window_width: None,
+    layouts: [
+        MainAndVertStack,
+        MainAndHorizontalStack,
+        MainAndDeck,
+        GridHorizontal,
+        EvenHorizontal,
+        EvenVertical,
+        Fibonacci,
+        LeftMain,
+        CenterMain,
+        CenterMainBalanced,
+        CenterMainFluid,
+        Monocle,
+        RightWiderLeftStack,
+        LeftWiderRightStack,
+    ],
+    layout_mode: Workspace,
+    insert_behavior: Bottom,
+    scratchpad: [
+        (name: "Alacritty", value: "alacritty", x: 860, y: 390, height: 300, width: 200),
+    ],
+    window_rules: [],
+    disable_current_tag_swap: false,
+    disable_tile_drag: false,
+    disable_window_snap: true,
+    focus_behaviour: Sloppy,
+    focus_new_windows: true,
+    sloppy_mouse_follows_focus: true,
+    keybind: [
+        // Quick start
+        (command: Execute, value: "dmenu_run -fn 'Iosevka-18' -l 10  -sf cyan", modifier: ["Control"], key: "space"),
+        (command: Execute, value: "clipcat-menu", modifier: ["modkey"], key: "c"),
+        (command: Execute, value: "rofi -terminal alacritty -show ssh", modifier: ["modkey"], key: "s"),
+        (command: Execute, value: "rofi -show", modifier: ["modkey"], key: "w"),
+        (command: Execute, value: "rofi -show run", modifier: ["modkey"], key: "r"),
+
+        // App shortcut
+        (command: Execute, value: "alacritty", modifier: ["modkey"], key: "Escape"),
+        (command: Execute, value: "firefox", modifier: ["modkey"], key: "f"),
+        (command: Execute, value: "pcmanfm", modifier: ["modkey"], key: "l"),
+        (command: Execute, value: "chromium", modifier: ["modkey"], key: "g"),
+
+        // Window management
+        (command: CloseWindow, value: "", modifier: ["Control"], key: "q"),
+
+        // Layout
+        (command: NextLayout, value: "", modifier: ["modkey"], key: "space"),
+        (command: NextLayout, value: "", modifier: ["modkey", "Control"], key: "k"),
+        (command: PreviousLayout, value: "", modifier: ["modkey", "Control"], key: "j"),
+        (command: MoveWindowUp, value: "", modifier: ["modkey", "Shift"], key: "k"),
+        (command: MoveWindowDown, value: "", modifier: ["modkey", "Shift"], key: "j"),
+        (command: MoveWindowTop, value: "", modifier: ["modkey"], key: "0"),
+        (command: MoveToLastWorkspace, value: "", modifier: ["modkey"], key: "h"), // hide to last workspace
+
+        // Focus
+        (command: FocusWindowUp, value: "", modifier: ["modkey"], key: "k"),
+        (command: FocusWindowDown, value: "", modifier: ["modkey"], key: "j"),
+        (command: FocusWorkspaceNext, value: "", modifier: ["Alt"], key: "Tab"),
+        (command: FocusWorkspacePrevious, value: "", modifier: ["Alt", "Shift"], key: "Tab"),
+
+        // WM control
+        (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
+        (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "q"),
+
+        // Goto
+        (command: GotoTag, value: "1", modifier: ["Control"], key: "1"),
+        (command: GotoTag, value: "2", modifier: ["Control"], key: "2"),
+        (command: GotoTag, value: "3", modifier: ["Control"], key: "3"),
+        (command: GotoTag, value: "4", modifier: ["Control"], key: "4"),
+        (command: GotoTag, value: "5", modifier: ["Control"], key: "5"),
+
+        // Move mouse
+        (command: Execute, value: "/home/yanganto/.usr/bin/move 1", modifier: ["Control", "Shift"], key: "1"),
+        (command: Execute, value: "/home/yanganto/.usr/bin/move 2", modifier: ["Control", "Shift"], key: "2"),
+        (command: Execute, value: "/home/yanganto/.usr/bin/move 3", modifier: ["Control", "Shift"], key: "3"),
+        (command: Execute, value: "/home/yanganto/.usr/bin/move 4", modifier: ["Control", "Shift"], key: "4"),
+        (command: Execute, value: "/home/yanganto/.usr/bin/move 5", modifier: ["Control", "Shift"], key: "5"),
+
+        // Move to workspace
+        (command: MoveToTag, value: "1", modifier: ["modkey"], key: "1"),
+        (command: MoveToTag, value: "2", modifier: ["modkey"], key: "2"),
+        (command: MoveToTag, value: "3", modifier: ["modkey"], key: "3"),
+        (command: MoveToTag, value: "4", modifier: ["modkey"], key: "4"),
+        (command: MoveToTag, value: "5", modifier: ["modkey"], key: "5"),
+
+        // Special function key
+        (command: Execute, value: "/run/wrappers/bin/light -A 5", modifier: [], key: "XF86XK_MonBrightnessUp"),
+        (command: Execute, value: "/run/wrappers/bin/light -U 5", modifier: [], key: "XF86XK_MonBrightnessDown"),
+
+        /* (command: Execute, value: "", modifier: [], key: "XF86XK_KbdBrightnessUp"), */
+        /* (command: Execute, value: "", modifier: [], key: "XF86XK_KbdBrightnessDown"), */
+        /* (command: Execute, value: "", modifier: ["modkey"], key: "XF86XK_KbdLightOnOff"), */
+
+        (command: Execute, value: "pamixer -i 5", modifier: [], key: "XF86XK_AudioRaiseVolume"),
+        (command: Execute, value: "pamixer -d 5", modifier: [], key: "XF86XK_AudioLowerVolume"),
+        (command: Execute, value: "pamixer -m", modifier: [], key: "XF86XK_AudioMute"),
+        (command: Execute, value: "pamixer -u", modifier: ["modkey"], key: "XF86XK_AudioMute"),
+
+    ],
+    state_path: None,
+)
