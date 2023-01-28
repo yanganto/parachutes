@@ -31,17 +31,5 @@ fi
 PATH=$PATH:$(realpath ~/.usr/bin):$(realpath ~/.cargo/bin):$(realpath ~/.cargo/bin)
 echo $PATH
 
-cp zshrc ~/.zshrc
-cp fzf.zsh ~/.fzf.zsh
-
-# Set up terminal config and script
-nu angels_9.sh
-
-# Set up git developing tool
-nu angels_8.sh
-
-# Set up text editor
-nu angels_7.sh
-
-# Set up windows manager
-nu angels_6.sh
+ln -s zshrc ~/.zshrc
+ln -s fzf.zsh ~/.fzf.zsh

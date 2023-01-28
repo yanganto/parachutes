@@ -4,7 +4,7 @@ echo "===> Angels  9 "
 echo "     Setup config for alacritty"
 
 mkdir -p ~/.config/alacritty
-cp alacritty.yml ~/.config/alacritty/
+ln -s alacritty.yml ~/.config/alacritty/alacritty.yml
 
 echo "     Setup personal script"
-cp -r ./bin ~/.usr/
+cp -s ./bin ~/.usr/
