@@ -13,6 +13,7 @@
     modkey: "Mod4",
     mousekey: "Mod4",
     workspaces: [],
+    auto_derive_workspaces: true,
     tags: [ "1", "2", "3", "4", "5", ],
     max_window_width: None,
     layouts: [
@@ -70,10 +71,10 @@
         (command: MoveToLastWorkspace, value: "", modifier: ["modkey"], key: "h"), // hide to last workspace
 
         // Focus
-        (command: FocusWindowUp, value: "", modifier: ["modkey"], key: "k"),
-        (command: FocusWindowDown, value: "", modifier: ["modkey"], key: "j"),
-        (command: FocusWorkspaceNext, value: "", modifier: ["Alt"], key: "Tab"),
-        (command: FocusWorkspacePrevious, value: "", modifier: ["Alt", "Shift"], key: "Tab"),
+        (command: FocusWorkspaceNext, value: "", modifier: ["modkey"], key: "k"),
+        (command: FocusWorkspacePrevious, value: "", modifier: ["modkey"], key: "j"),
+        (command: FocusWindowUp, value: "", modifier: ["Alt"], key: "Tab"),
+        (command: FocusWindowDown, value: "", modifier: ["Alt", "Shift"], key: "Tab"),
 
         // WM control
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
