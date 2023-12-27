@@ -111,8 +111,9 @@
 
         (command: Execute, value: "pamixer -i 5", modifier: [], key: "XF86XK_AudioRaiseVolume"),
         (command: Execute, value: "pamixer -d 5", modifier: [], key: "XF86XK_AudioLowerVolume"),
-        (command: Execute, value: "pamixer -m", modifier: [], key: "XF86XK_AudioMute"),
-        (command: Execute, value: "pamixer -u", modifier: ["modkey"], key: "XF86XK_AudioMute"),
+        (command: Execute, value: "pamixer -t", modifier: [], key: "XF86XK_AudioMute"),
+        /* (command: Execute, value: "pamixer -m", modifier: ["Control"], key: "XF86XK_AudioMute"), */
+        /* (command: Execute, value: "pamixer -u", modifier: ["modkey"], key: "XF86XK_AudioMute"), */
 
     ],
     state_path: None,
