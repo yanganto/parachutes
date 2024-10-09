@@ -14,7 +14,8 @@ fi
 
 curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- array
 curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- sdadonkey/rime-english
-ln -s rime.default.yaml ~/.config/ibus/rime/default.yaml
+mkdir -p ~/.config/ibus/rime/
+ln rime.default.yaml ~/.config/ibus/rime/default.yaml
 
 mkdir -p ~/.config/rofi
-ln -s config.rasi ~/.config/rofi/config.rasi
+ln config.rasi ~/.config/rofi/config.rasi
