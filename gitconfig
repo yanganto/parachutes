@@ -1,3 +1,14 @@
 [user]
 	email = yanganto@gmail.com
 	name = Antonio Yang
+	signingKey = ~/.ssh/id_rsa.pub
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+; [tag]
+; 	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/yanganto/.config/git/allowed_signers
+; [gpg]
+; 	format = ssh

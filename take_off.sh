@@ -13,3 +13,4 @@ git submodule foreach --recursive git pull origin master
 
 sh angels_10.sh
 sh angels_9.sh
+sh angels_8.sh
