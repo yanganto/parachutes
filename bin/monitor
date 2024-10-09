@@ -4,8 +4,23 @@ xrandr --setprovideroutputsource 1 0
 echo ${1} > /tmp/screens
 rc=1
 if [ "${1}" == "dual" ]; then
-    echo "dual screen set up debug"
+    # Second screen at the right side
+    # xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 0x0 --rotate normal
+
+    # Second screen at the left side
+    xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+    rc=0
+fi
+
+if [ "${1}" == "right" ]; then
+    # Second screen at the right side
     xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 0x0 --rotate normal
+    rc=0
+fi
+
+if [ "${1}" == "left" ]; then
+    # Second screen at the left side
+    xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1920x1080 --pos 1920x0 --rotate normal
     rc=0
 fi
 
@@ -57,7 +72,6 @@ fi
 
 if [ $rc == 0 ]; then
     echo "set up background"
-    # NOTE feh now handled by leftwm
     # feh --bg-tile ~/.config/qtile/black_woven_seamless_tile.jpg
 else
     echo "monitor [profile]"

@@ -75,13 +75,26 @@ export EDITOR='nvim'
 
 [ -f ~/.kube/_kubectl ] && source ~/.kube/_kubectl
 
-alias gu="gitui"
+export GITUI_SSH_KEY_PATH=~/.ssh/id_rsa
+alias gu="nix run github:yanganto/gitui/ssh"
 alias g="git"
+alias n="npm"
 alias gp="git push"
 alias ga="git add"
 alias gc="git commit"
 alias gco="git checkout"
 alias gcp="git cherry-pick"
+
+alias c="cargo"
+alias cb="cargo build"
+alias cc="cargo check"
+alias cl="cargo clean"
+alias ct="cargo test"
+alias cr="cargo run"
+
+alias tg="terragrunt"
+alias tf="terraform"
+alias ta="terraform apply"
 
 [ -f ~/.zinit/bin ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 
@@ -113,6 +126,8 @@ zinit snippet OMZL::git.zsh
 eval "$(direnv hook zsh)"
 
 [ -f ~/.my.zsh ] && source ~/.my.zsh
+[ -f ~/.mcfly.zsh ] && source ~/.mcfly.zsh
+[ -f ~/.zoxide.zsh ] && source ~/.zoxide.zsh
 
 # Defined these arrays to check
 # HOST_CHECK_LIST WEB_CHECK_LIST
@@ -125,7 +140,7 @@ if [ -f $server_info ]; then
         eecho "Looks bad at `ls -l /tmp/server_info | awk '{print $8}'`"
         cat $server_info
     else
-        secho "Server Looks great at `ls -l /tmp/server_info | awk '{print $8}'`"
+        secho "Server looks great at `ls -l /tmp/server_info | awk '{print $8}'`"
     fi
 else
     for host in $HOST_CHECK_LIST; do
@@ -148,47 +163,6 @@ else
             eecho "$web Web down"
         fi
     done
-fi
-
-outdate_packages=/tmp/outdate_packages.txt
-function ghTagCheck() {
-    catch_file=/tmp/tag-check-${1}-${2}
-    if [ ! -f $catch_file ]; then
-        curl -s https://github.com/${1}/${2}/releases \
-            | hxnormalize -x  \
-            | hxselect -s '\n' -c "span.css-truncate-target" \
-            | head -n 1 \
-            > $catch_file
-    fi
-
-    version=$(cat $catch_file)
-
-    if [ $version != $3 ]; then
-        eecho "The package for ${1}/${2} ($3) is out of update, current is $version"
-        echo "${1}/${2} ${3} -> $version" >> $outdate_packages
-    fi
-}
-
-ghTagCheck "soywod" "himalaya" "v0.3.2"
-ghTagCheck "extrawurst" "gitui" "v0.15.0"
-ghTagCheck "qarmin" "czkawka" "3.1.0"
-
-# TODO handle manually tags here
-# tagCheck "acj" "krapslog" "0.1.2"
-# tagCheck "arp242" "find-cursor" "v1.6"
-
-if [ -f $outdate_packages ]; then
-    eecho "Packages out of date"
-    cat $outdate_packages
-else
-    secho "All package updated"
-fi
-
-# Defined PLAN_FOLDER for your markdowm plans
-if [[ ! -z "${PLAN_FOLDER}" ]]; then
-    week_number=$(expr $(date +%U) + 1)
-    echo "Plan for week ${week_number}"
-    mdcat ${PLAN_FOLDER}/2021-week-${week_number}.md
 fi
 
 fpath=(~/.zsh/functions $fpath)
