@@ -11,4 +11,5 @@ echo $PATH
 ln zshrc ~/.zshrc
 ln -s fzf.zsh ~/.fzf.zsh
 
+mkdir ~/.usr
 ln -s ./bin ~/.usr/
