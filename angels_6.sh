@@ -5,11 +5,12 @@ set -e
 echo "===> Angels  6 - WM, IME"
 if command -v qtile &> /dev/null; then
     echo "qtile detected"
-    ln -s `pwd`/qtile ~/.config/qtile
+    ln -s `pwd`/qtile ~/.config/
 fi
 if command -v leftwm &> /dev/null; then
     echo "leftwm detected"
-    ln -s `pwd`/leftwm ~/.config/leftwm
+    ln -s `pwd`/leftwm ~/.config/
+    echo "leftwm > /tmp/leftwm.log 2> /tmp/leftwm.err.log" > ~/.xinitrc
 fi
 
 curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- array
