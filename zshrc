@@ -57,7 +57,7 @@ function user_color {
 }
 
 PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;$(user_color)m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;$(hostname_color)m%}%m%{\e[0;34m%}%B]%b%{\e[0m%} - %b%{\e[0;34m%}%B[$(virtual_env_path)%b%{\e[1;37m%}% $(virtual_env_rpath)%{\e[0;34m%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%a %b %d, %H:%M"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
-%{\e[0;34m%}%B└─%B[%{\e[1;35m%}$(virtual_env_promp)%{\e[0;34m%}%B] <$(git_prompt_info)>%{\e[0m%}%b '
+%{\e[0;34m%}%B└─%B[%{\e[1;35m%}$(virtual_env_promp)%{\e[0;34m%}%B] <$(_omz_git_prompt_info)>%{\e[0m%}%b '
 PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
 
 export GNUPGHOME=~/.gnupg/trezor
@@ -96,32 +96,19 @@ alias tg="terragrunt"
 alias tf="terraform"
 alias ta="terraform apply"
 
-[ -f ~/.zinit/bin ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+typeset -Ag ZI
+typeset -gx ZI[HOME_DIR]="${HOME}/.zi"
+typeset -gx ZI[BIN_DIR]="${HOME}/.zi/bin"
+if [[ ! -f $HOME/.zi/bin/zi.zsh ]]; then
+    command mkdir -p "$ZI[BIN_DIR]"
+    command git clone https://github.com/z-shell/zi.git "$ZI[BIN_DIR]"
 fi
+source "${ZI[BIN_DIR]}/zi.zsh"
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
-# zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZL::git.zsh
+zi snippet OMZL::git.zsh
 
 eval "$(direnv hook zsh)"
 
@@ -166,5 +153,3 @@ else
 fi
 
 fpath=(~/.zsh/functions $fpath)
-autoload -Uz compinit
-compinit -u
