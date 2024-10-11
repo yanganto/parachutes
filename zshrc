@@ -8,6 +8,8 @@ setopt PROMPT_SUBST
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export ZSH_THEME_GIT_PROMPT_DIRTY="*"
+export HISTFILE=$HOME/.zsh_history
+export SAVEHIST=1000
 
 function virtual_env_rpath () {
     if [ ${#PWD} -gt ${#VIRTUAL_ENV} ]; then
@@ -71,8 +73,6 @@ export PATH=$PATH:$HOME/.cargo/bin:$HOME/.usr/bin
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 [ -f ~/.kube/_kubectl ] && source ~/.kube/_kubectl
 
 export GITUI_SSH_KEY_PATH=~/.ssh/id_rsa
@@ -111,7 +111,7 @@ autoload -Uz _zi
 zi snippet OMZL::git.zsh
 
 eval "$(direnv hook zsh)"
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.my.zsh ] && source ~/.my.zsh
 [ -f ~/.mcfly.zsh ] && source ~/.mcfly.zsh
 [ -f ~/.zoxide.zsh ] && source ~/.zoxide.zsh
@@ -152,4 +152,5 @@ else
     done
 fi
 
+set -o emacs
 fpath=(~/.zsh/functions $fpath)
