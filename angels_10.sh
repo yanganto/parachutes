@@ -5,8 +5,10 @@ echo "===> Angels 10 - Setup Z shell and utils"
 rm -rf ~/.zshrc
 ln zshrc ~/.zshrc
 
-rm -rf ~/.fzf.zsh
-ln fzf.zsh ~/.fzf.zsh
+if command -v fzf &> /dev/null; then
+    echo "fzf detected"
+    ln fzf.zsh ~/.fzf.zsh
+fi
 
 if command -v zoxide &> /dev/null; then
     echo "zoxide detected"
