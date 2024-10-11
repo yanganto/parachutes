@@ -1,7 +1,7 @@
 [user]
 	email = yanganto@gmail.com
 	name = Antonio Yang
-	signingKey = ~/.ssh/id_rsa.pub
+	signingKey = ~/.ssh/id_ed25519.pub
 [gpg]
 	format = ssh
 [commit]
