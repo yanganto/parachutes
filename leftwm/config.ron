@@ -106,8 +106,8 @@
         (command: MoveToTag, value: "5", modifier: ["modkey"], key: "5"),
 
         // Special function key
-        (command: Execute, value: "/run/wrappers/bin/light -A 5", modifier: [], key: "XF86XK_MonBrightnessUp"),
-        (command: Execute, value: "/run/wrappers/bin/light -U 5", modifier: [], key: "XF86XK_MonBrightnessDown"),
+        (command: Execute, value: "light -A 5", modifier: [], key: "XF86XK_MonBrightnessUp"),
+        (command: Execute, value: "light -U 5", modifier: [], key: "XF86XK_MonBrightnessDown"),
 
         /* (command: Execute, value: "", modifier: [], key: "XF86XK_KbdBrightnessUp"), */
         /* (command: Execute, value: "", modifier: [], key: "XF86XK_KbdBrightnessDown"), */
