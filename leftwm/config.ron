@@ -113,11 +113,9 @@
         /* (command: Execute, value: "", modifier: [], key: "XF86XK_KbdBrightnessDown"), */
         /* (command: Execute, value: "", modifier: ["modkey"], key: "XF86XK_KbdLightOnOff"), */
 
-        (command: Execute, value: "pamixer -i 5", modifier: [], key: "XF86XK_AudioRaiseVolume"),
-        (command: Execute, value: "pamixer -d 5", modifier: [], key: "XF86XK_AudioLowerVolume"),
-        (command: Execute, value: "pamixer -t", modifier: [], key: "XF86XK_AudioMute"),
-        /* (command: Execute, value: "pamixer -m", modifier: ["Control"], key: "XF86XK_AudioMute"), */
-        /* (command: Execute, value: "pamixer -u", modifier: ["modkey"], key: "XF86XK_AudioMute"), */
+        (command: Execute, value: "pactl set-sink-volume `pactl get-default-sink` +5%", modifier: [], key: "XF86XK_AudioRaiseVolume"),
+        (command: Execute, value: "pactl set-sink-volume `pactl get-default-sink` -5%", modifier: [], key: "XF86XK_AudioLowerVolume"),
+        (command: Execute, value: "pactl set-sink-mute `pactl get-default-sink` toggle", modifier: [], key: "XF86XK_AudioMute"),
 
     ],
     state_path: None,
