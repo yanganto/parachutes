@@ -65,8 +65,8 @@ PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
 export GNUPGHOME=~/.gnupg/trezor
 
 # Rust
-export SCCACHE_DIR=~/data/sccache
-export RUSTC_WRAPPER=sccache
+#export SCCACHE_DIR=~/data/sccache
+#export RUSTC_WRAPPER=sccache
 export PATH=$PATH:$HOME/.cargo/bin:$HOME/.usr/bin
 
 
@@ -76,7 +76,7 @@ export EDITOR='nvim'
 [ -f ~/.kube/_kubectl ] && source ~/.kube/_kubectl
 
 export GITUI_SSH_KEY_PATH=~/.ssh/id_rsa
-alias gu="nix run github:yanganto/gitui/ssh"
+alias gu="nix run github:yanganto/gitui/flake"
 alias g="git"
 alias n="npm"
 alias gp="git push"

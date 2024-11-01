@@ -54,6 +54,7 @@ Plug 'jvirtanen/vim-hcl'
 " Plug 'posva/vim-vue'
 Plug 'hashivim/vim-terraform'
 Plug 'yorinasub17/vim-terragrunt'
+Plug 'yanganto/move.vim', {'branch': 'sui-move'}
 
 " Linter
 Plug 'neovim/nvim-lspconfig'
@@ -135,6 +136,7 @@ autocmd Filetype c setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype rust setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype ron setlocal ts=2 sts=2 sw=2 expandtab syntax=rust
+autocmd Filetype move setlocal ts=2 sts=2 sw=2 expandtab
 
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype asciidoc setlocal ts=4 sts=4 sw=4 expandtab
