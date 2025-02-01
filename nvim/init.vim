@@ -136,7 +136,7 @@ autocmd Filetype c setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype rust setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype ron setlocal ts=2 sts=2 sw=2 expandtab syntax=rust
-autocmd Filetype move setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype move setlocal ts=4 sts=4 sw=4 expandtab
 
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype asciidoc setlocal ts=4 sts=4 sw=4 expandtab
@@ -225,6 +225,7 @@ map <C-n> <ESC>:Clap files<CR>
 " let g:airline#extensions#ale#enabled = 1
 " let g:ale_set_signs = 0
 
+" hi Warn gui=bold cterm=bold
 
 " GitGutter
 nmap ]h <Plug>(GitGutterNextHunk)
