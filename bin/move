@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 layout=`cat /tmp/screens`
 
-if [ "$layout" == "kn" ]; then
+if [ "$layout" == "ar" ]; then
     #  O1 O2
     if [ "${1}" == "1" ]; then
-        xdotool mousemove --sync 1280 720 click 1 sleep 0.1
+        xdotool mousemove --sync 960 540 click 1 sleep 0.1
     fi
     if [ "${1}" == "2" ]; then
-        xdotool mousemove --sync 3520 540 click 1 sleep 0.1
+        xdotool mousemove --sync 960 1620 click 1 sleep 0.1
     fi
 fi
 
