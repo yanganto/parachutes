@@ -60,7 +60,8 @@
         (command: Execute, value: "alacritty", modifier: ["modkey"], key: "Escape"),
         (command: Execute, value: "firefox", modifier: ["modkey"], key: "f"),
         (command: Execute, value: "brave", modifier: ["modkey"], key: "b"),
-        (command: Execute, value: "pcmanfm", modifier: ["modkey"], key: "l"),
+        (command: Execute, value: "zeditor", modifier: ["modkey"], key: "z"),
+        (command: Execute, value: "alacritty -e yazi", modifier: ["modkey"], key: "l"),
 
         // Window management
         (command: CloseWindow, value: "", modifier: ["Control"], key: "q"),

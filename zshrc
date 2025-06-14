@@ -1,8 +1,4 @@
-tput setf 3
-echo ""
-echo "Wing of liberty,\n\nHeart of Lion,\n\nRobust of Gear" | cowsay
-echo ""
-tput rev
+neofetch
 
 setopt PROMPT_SUBST
 
@@ -58,7 +54,8 @@ function user_color {
     fi
 }
 
-PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;$(user_color)m%}%n%{\e[1;30m%}@%{\e[0m%}%{\e[0;$(hostname_color)m%}%m%{\e[0;34m%}%B]%b%{\e[0m%} - %b%{\e[0;34m%}%B[$(virtual_env_path)%b%{\e[1;37m%}% $(virtual_env_rpath)%{\e[0;34m%}%B]%b%{\e[0m%} - %{\e[0;34m%}%B[%b%{\e[0;33m%}'%D{"%a %b %d, %H:%M"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
+
+PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;$(user_color)m%}%n%{\e[1;34m%}@%{\e[0m%}%{\e[0;$(hostname_color)m%}%m%{\e[0;34m%}%B]-[$(virtual_env_path)%b%{\e[1;37m%}% $(virtual_env_rpath)%{\e[0;34m%}%B]-[%b%{\e[0;33m%}'%D{"%F, %H:%M (%s)"}%b$'%{\e[0;34m%}%B]%b%{\e[0m%}
 %{\e[0;34m%}%B└─%B[%{\e[1;35m%}$(virtual_env_promp)%{\e[0;34m%}%B] <$(_omz_git_prompt_info)>%{\e[0m%}%b '
 PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
 
