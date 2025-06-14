@@ -59,8 +59,8 @@
         // App shortcut
         (command: Execute, value: "alacritty", modifier: ["modkey"], key: "Escape"),
         (command: Execute, value: "firefox", modifier: ["modkey"], key: "f"),
+        (command: Execute, value: "brave", modifier: ["modkey"], key: "b"),
         (command: Execute, value: "pcmanfm", modifier: ["modkey"], key: "l"),
-        (command: Execute, value: "chromium", modifier: ["modkey"], key: "g"),
 
         // Window management
         (command: CloseWindow, value: "", modifier: ["Control"], key: "q"),
