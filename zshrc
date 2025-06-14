@@ -7,6 +7,14 @@ export ZSH_THEME_GIT_PROMPT_DIRTY="*"
 export HISTFILE=$HOME/.zsh_history
 export SAVEHIST=1000
 
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
+
 function virtual_env_rpath () {
     if [ ${#PWD} -gt ${#VIRTUAL_ENV} ]; then
         echo ${$(pwd)#$VIRTUAL_ENV}
