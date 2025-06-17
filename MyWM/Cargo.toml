@@ -1,0 +1,19 @@
+[package]
+name = "mwm"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+doc = false
+name = "mwm"
+path = "src/main.rs"
+
+[profile.release]
+strip = true
+
+[dependencies]
+anyhow = "1.0.98"
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "json"] }
+penrose = "0.4"
+penrose_ui = "0.4"
