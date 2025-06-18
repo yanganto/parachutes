@@ -55,7 +55,7 @@ for file in $(git diff --name-only --cached); do
 done
 
 if [ ${#problem_files[@]} != 0 ]; then
-  ErrorMsg "Flowing files are formated please check:"
+  ErrorMsg "Flowing files are formatted please check:"
   echo "${problem_files}"
   exit 1
 fi
