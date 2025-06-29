@@ -1,19 +1,22 @@
 //! My Windows Manager with Penrose
-use penrose::extensions::hooks::named_scratchpads::NamedScratchPad;
+use penrose::builtin::actions::{exit, spawn};
+use penrose::builtin::layout::Monocle;
 use penrose::extensions::hooks::manage::FloatingCentered;
+use penrose::extensions::hooks::named_scratchpads::NamedScratchPad;
 use penrose::extensions::layout::Tatami;
+use penrose::map;
 use penrose::stack;
 
-use penrose::core::WindowManager;
-use penrose::core::layout::LayoutStack;
-use penrose::core::bindings::KeyCode;
 use penrose::builtin::hooks::SpacingHook;
-use penrose::core::Config;
 use penrose::core::bindings::parse_keybindings_with_xmodmap;
+use penrose::core::bindings::KeyCode;
 use penrose::core::bindings::KeyEventHandler;
+use penrose::core::layout::LayoutStack;
+use penrose::core::Config;
+use penrose::core::WindowManager;
+use penrose::extensions::hooks::add_ewmh_hooks;
 use penrose::extensions::hooks::add_named_scratchpads;
 use penrose::extensions::hooks::manage::SetWorkspace;
-use penrose::extensions::hooks::add_ewmh_hooks;
 use penrose::x::query::ClassName;
 use penrose::x11rb::RustConn;
 
@@ -29,10 +32,29 @@ pub fn layouts() -> LayoutStack {
         // odd_even(),
         // Fibonacci::boxed_default(),
         // ReflectHorizontal::wrap(Fibonacci::boxed_default()),
+        Monocle::boxed(),
         Tatami::boxed(0.6, 0.1)
     )
 }
 
+fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
+    let mut map = HashMap::new();
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 24,     // q
+        },
+        exit(),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 9,      // Esc
+        },
+        spawn("alacritty"),
+    );
+    map
+}
 
 fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt()
@@ -50,8 +72,7 @@ fn main() -> anyhow::Result<()> {
 
     let wm = WindowManager::new(
         add_ewmh_hooks(config()),
-        HashMap::<KeyCode, Box<dyn KeyEventHandler<RustConn>>>::new(),
-        // parse_keybindings_with_xmodmap(HashMap::<String, Box<dyn KeyEventHandler<RustConn>>>::new())?,
+        key_bindings(),
         HashMap::new(),
         RustConn::new()?,
     )?;

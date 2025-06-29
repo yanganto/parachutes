@@ -27,6 +27,7 @@
             rust-bin.stable."1.87.0".default 
             xorg.libX11
             xorg.libXft
+            xorg.xmodmap
             pkg-config
           ];
         });
