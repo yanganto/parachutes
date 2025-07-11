@@ -1,9 +1,10 @@
 //! My Windows Manager with Penrose
-use penrose::builtin::actions::{exit, spawn};
-use penrose::builtin::layout::Monocle;
+use penrose::builtin::actions::{exit, modify_with, spawn};
+use penrose::builtin::layout::{CenteredMain, MainAndStack, Monocle};
+use penrose::core::layout::Layout;
 use penrose::extensions::hooks::manage::FloatingCentered;
 use penrose::extensions::hooks::named_scratchpads::NamedScratchPad;
-use penrose::extensions::layout::Tatami;
+use penrose::extensions::layout::{Conditional, Tatami};
 use penrose::map;
 use penrose::stack;
 
@@ -20,7 +21,9 @@ use penrose::extensions::hooks::manage::SetWorkspace;
 use penrose::x::query::ClassName;
 use penrose::x11rb::RustConn;
 
+use mwm::bar::status_bar;
 use std::collections::HashMap;
+use std::time::Duration;
 use tracing_subscriber::{self, prelude::*};
 
 pub const BAR_HEIGHT_PX: u32 = 24;
@@ -28,7 +31,7 @@ pub const GAP_PX: u32 = 5;
 
 pub fn layouts() -> LayoutStack {
     stack!(
-        // flex_main()
+        flex_main(),
         // odd_even(),
         // Fibonacci::boxed_default(),
         // ReflectHorizontal::wrap(Fibonacci::boxed_default()),
@@ -37,12 +40,21 @@ pub fn layouts() -> LayoutStack {
     )
 }
 
+fn flex_main() -> Box<dyn Layout> {
+    Conditional::boxed(
+        "FlexMain",
+        MainAndStack::default(),
+        CenteredMain::default(),
+        |_, r| r.w <= 1400,
+    )
+}
+
 fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
     let mut map = HashMap::new();
     map.insert(
         KeyCode {
-            mask: 1 << 6, // Meta
-            code: 24,     // q
+            mask: 1 << 6 | 1, // Meta + Shift
+            code: 24,         // q
         },
         exit(),
     );
@@ -52,6 +64,31 @@ fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
             code: 9,      // Esc
         },
         spawn("alacritty"),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 56,     // Esc
+        },
+        spawn("brave"),
+    );
+
+    // Worksapce Controls
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 23,     // Tab
+        },
+        modify_with(|cs| cs.toggle_tag()),
+    );
+
+    // Layout Controls
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 65,     // Space
+        },
+        modify_with(|cs| cs.toggle_tag()),
     );
     map
 }
@@ -77,8 +114,9 @@ fn main() -> anyhow::Result<()> {
         RustConn::new()?,
     )?;
 
-    // let wm = add_named_scratchpads(status_bar()?.add_to(wm), vec![nsp]);
-    wm.run()?;
+    // let wm = add_named_scratchpads(status_bar()?.add_to(wm), vec![]);
+    let wm_with_bar = status_bar()?.add_to(wm);
+    wm_with_bar.run()?;
 
     Ok(())
 }
