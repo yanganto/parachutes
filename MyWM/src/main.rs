@@ -73,13 +73,41 @@ fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
         spawn("brave"),
     );
 
-    // Worksapce Controls
+    // Window Control
     map.insert(
         KeyCode {
             mask: 1 << 6, // Meta
             code: 23,     // Tab
         },
-        modify_with(|cs| cs.toggle_tag()),
+        modify_with(|cs| cs.swap_focus_and_head()),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 44,     // J
+        },
+        modify_with(|cs| cs.focus_down()),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 45,     // K
+        },
+        modify_with(|cs| cs.focus_up()),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6 | 1, // Meta + Shift
+            code: 44,         // J
+        },
+        modify_with(|cs| cs.swap_down()),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6 | 1, // Meta + Shift
+            code: 45,         // K
+        },
+        modify_with(|cs| cs.swap_up()),
     );
 
     // Layout Controls
@@ -88,7 +116,7 @@ fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
             mask: 1 << 6, // Meta
             code: 65,     // Space
         },
-        modify_with(|cs| cs.toggle_tag()),
+        modify_with(|cs| cs.next_layout()),
     );
     map
 }

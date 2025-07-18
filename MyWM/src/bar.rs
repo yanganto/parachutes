@@ -6,9 +6,9 @@ pub const POINT_SIZE: u8 = 10;
 pub const BAR_HEIGHT_PX: u32 = 24;
 pub const GAP_PX: u32 = 5;
 
-pub const DEEP_OCEAN: u32 = 0x0300F1CFF;
+pub const DEEP_OCEAN: u32 = 0x030F1CFF;
 pub const WHITE: u32 = 0xFFFFFFFF;
-pub const AQUA: u32 = 0xC0E6FFFF;
+pub const AQUA: u32 = 0x86A1B2FF;
 pub const SEA: u32 = 0x4DA2FFFF;
 
 use penrose_ui::{
@@ -28,8 +28,8 @@ const MAX_ACTIVE_WINDOW_CHARS: usize = 50;
 // Mostly the example dwm bar from the main repo but recreated here so it's easier to tinker
 // with and add in debug widgets when needed.
 pub fn status_bar<X: XConn>() -> penrose_ui::Result<StatusBar<X>> {
-    let highlight: Color = SEA.into();
-    let empty_ws: Color = AQUA.into();
+    let highlight: Color = AQUA.into();
+    let empty_ws: Color = SEA.into();
 
     let style = TextStyle {
         fg: WHITE.into(),
@@ -43,13 +43,13 @@ pub fn status_bar<X: XConn>() -> penrose_ui::Result<StatusBar<X>> {
     };
 
     StatusBar::try_new(
-        Position::Bottom,
+        Position::Top,
         BAR_HEIGHT_PX,
         style.bg.unwrap_or_else(|| 0x000000.into()),
         FONT,
         POINT_SIZE,
         vec![
-            Box::new(Workspaces::new(style, highlight, empty_ws)),
+            Box::new(Workspaces::new(style, SEA, empty_ws)),
             Box::new(CurrentLayout::new(style)),
             Box::new(ActiveWindowName::new(
                 MAX_ACTIVE_WINDOW_CHARS,
