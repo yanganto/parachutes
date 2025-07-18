@@ -27,7 +27,7 @@ use std::time::Duration;
 use tracing_subscriber::{self, prelude::*};
 
 pub const BAR_HEIGHT_PX: u32 = 24;
-pub const GAP_PX: u32 = 5;
+pub const GAP_PX: u32 = 0;
 
 pub fn layouts() -> LayoutStack {
     stack!(
@@ -110,6 +110,42 @@ fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
         modify_with(|cs| cs.swap_up()),
     );
 
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 10,     // 1
+        },
+        modify_with(|cs| cs.move_focused_to_tag("1")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 11,     // 2
+        },
+        modify_with(|cs| cs.move_focused_to_tag("2")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 12,     // 3
+        },
+        modify_with(|cs| cs.move_focused_to_tag("3")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 13,     // 4
+        },
+        modify_with(|cs| cs.move_focused_to_tag("4")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 6, // Meta
+            code: 14,     // 5
+        },
+        modify_with(|cs| cs.move_focused_to_tag("5")),
+    );
+
     // Layout Controls
     map.insert(
         KeyCode {
@@ -117,6 +153,42 @@ fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
             code: 65,     // Space
         },
         modify_with(|cs| cs.next_layout()),
+    );
+
+    map.insert(
+        KeyCode {
+            mask: 1 << 2, // Ctrl
+            code: 10,     // 1
+        },
+        modify_with(|cs| cs.focus_tag("1")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 2, // Ctrl
+            code: 11,     // 2
+        },
+        modify_with(|cs| cs.focus_tag("2")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 2, // Ctrl
+            code: 12,     // 3
+        },
+        modify_with(|cs| cs.focus_tag("3")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 2, // Ctrl
+            code: 13,     // 4
+        },
+        modify_with(|cs| cs.focus_tag("4")),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 2, // Ctrl
+            code: 14,     // 5
+        },
+        modify_with(|cs| cs.focus_tag("5")),
     );
     map
 }
@@ -163,6 +235,13 @@ fn config() -> Config<RustConn> {
         startup_hook: None,
         layout_hook: Some(layout_hook),
         manage_hook: Some(manage_hook),
+        tags: vec![
+            "1".to_string(),
+            "2".to_string(),
+            "3".to_string(),
+            "4".to_string(),
+            "5".to_string(),
+        ],
         ..Config::default()
     }
 }
