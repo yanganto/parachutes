@@ -41,7 +41,7 @@ let
 
   pyEnv = python.withPackages (ps: [ ps.pynvim ps.msgpack ]);
 
-  # FIXME: this is verry messy and strange.
+  # FIXME: this is very messy and strange.
   # see https://github.com/NixOS/nixpkgs/pull/80528
   luv = lua.pkgs.luv;
   luvpath = with builtins ; if stdenv.isDarwin

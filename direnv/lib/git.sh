@@ -2,7 +2,7 @@
 if [ -e .git ]; then
     onefetch
     if [ ! -f .git/hooks/pre-commit ] \
-        || [ $(cat .git/hooks/version || echo 0) -lt __DROP_TIMESTMP ]; then
+        || [ $(cat .git/hooks/version || echo 0) -lt __DROP_TIMESTAMP ]; then
         log "Update pre-commit script"
         cp ~/.config/template/pre-commit .git/hooks/
         cp ~/.config/template/version .git/hooks/

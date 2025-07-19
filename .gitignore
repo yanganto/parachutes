@@ -2,3 +2,5 @@ direnvrc
 plum/
 nvim/plugged
 .direnv
+MyWM/target
+MyWM/Cargo.lock

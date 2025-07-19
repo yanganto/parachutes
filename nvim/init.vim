@@ -8,7 +8,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'RRethy/vim-illuminate'
 
-" Brosing
+" Browsing
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'liuchengxu/vim-clap'

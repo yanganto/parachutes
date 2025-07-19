@@ -1,0 +1,2 @@
+[files]
+extend-exclude = ["nixpkgs/*", "nvim/plugged/*", "nvim/autoload/*"]
