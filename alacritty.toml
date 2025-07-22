@@ -3,6 +3,9 @@ animation = "EaseOutExpo"
 color = "#864343"
 duration = 50
 
+[window]
+decorations = "none"
+
 [colors.primary]
 background = "#1d1f21"
 bright_foreground = "#eaeaea"
