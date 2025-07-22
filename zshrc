@@ -1,5 +1,3 @@
-neofetch
-
 setopt PROMPT_SUBST
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -159,3 +157,5 @@ fi
 
 set -o emacs
 fpath=(~/.zsh/functions $fpath)
+neofetch
+
