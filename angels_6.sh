@@ -3,6 +3,10 @@ set -e
 
 # Setup script for window manager
 echo "===> Angels  6 - WM, IME"
+if command -v niri &> /dev/null; then
+    echo "niri detected"
+    ln -s `pwd`/niri ~/.config/
+fi
 if command -v qtile &> /dev/null; then
     echo "qtile detected"
     ln -s `pwd`/qtile ~/.config/
