@@ -3,6 +3,22 @@ set -e
 
 # Setup script for window manager
 echo "===> Angels  6 - WM, IME"
+if command -v swaylock &> /dev/null; then
+    echo "swaylock detected"
+    ln -s `pwd`/swaylock ~/.config/
+fi
+if command -v fuzzel &> /dev/null; then
+    echo "fuzzel detected"
+    ln -s `pwd`/fuzzel ~/.config/
+fi
+if command -v waybar &> /dev/null; then
+    echo "waybar detected"
+    ln -s `pwd`/waybar ~/.config/
+fi
+if command -v niri &> /dev/null; then
+    echo "niri detected"
+    ln -s `pwd`/niri ~/.config/
+fi
 if command -v qtile &> /dev/null; then
     echo "qtile detected"
     ln -s `pwd`/qtile ~/.config/
