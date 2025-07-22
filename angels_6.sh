@@ -3,6 +3,10 @@ set -e
 
 # Setup script for window manager
 echo "===> Angels  6 - WM, IME"
+if command -v waybar &> /dev/null; then
+    echo "waybar detected"
+    ln -s `pwd`/waybar ~/.config/
+fi
 if command -v niri &> /dev/null; then
     echo "niri detected"
     ln -s `pwd`/niri ~/.config/
