@@ -3,6 +3,10 @@ set -e
 
 # Setup script for window manager
 echo "===> Angels  6 - WM, IME"
+if command -v fuzzel &> /dev/null; then
+    echo "fuzzel detected"
+    ln -s `pwd`/fuzzel ~/.config/
+fi
 if command -v waybar &> /dev/null; then
     echo "waybar detected"
     ln -s `pwd`/waybar ~/.config/
