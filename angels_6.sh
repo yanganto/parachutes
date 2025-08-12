@@ -18,6 +18,7 @@ fi
 if command -v niri &> /dev/null; then
     echo "niri detected"
     ln -s `pwd`/niri ~/.config/
+    ln -s `pwd`/bar-rs ~/.config/
 fi
 if command -v qtile &> /dev/null; then
     echo "qtile detected"
