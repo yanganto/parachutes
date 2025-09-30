@@ -259,8 +259,14 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
-// spawn-at-startup "/home/yanganto/data/bar-rs/target/debug/bar-rs"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "wrapped-bar-rs"
+spawn-at-startup "mako"
+spawn-at-startup "swww img ~/.config/leftwm/themes/basic_polybar/background.jpg"
+// It should be work in 25.08, but not work with 25.08 version under NixOS 25.05
+// Will check if the bug still here in next release in NixOS
+// https://github.com/YaLTeR/niri/issues/2283#issuecomment-3251073525
+spawn-at-startup "fcitx5 -d -r"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
