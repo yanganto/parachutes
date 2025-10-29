@@ -499,16 +499,16 @@ binds {
     //
     // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
     // will all refer to the 3rd workspace.
-    Ctrl+1 { focus-workspace 1; }
-    Ctrl+2 { focus-workspace 2; }
-    Ctrl+3 { focus-workspace 3; }
-    Ctrl+4 { focus-workspace 4; }
-    Ctrl+5 { focus-workspace 5; }
-    Mod+1 { move-column-to-workspace 1; }
-    Mod+2 { move-column-to-workspace 2; }
-    Mod+3 { move-column-to-workspace 3; }
-    Mod+4 { move-column-to-workspace 4; }
-    Mod+5 { move-column-to-workspace 5; }
+    Ctrl+F1 { focus-workspace 1; }
+    Ctrl+F2 { focus-workspace 2; }
+    Ctrl+F3 { focus-workspace 3; }
+    Ctrl+F4 { focus-workspace 4; }
+    Ctrl+F5 { focus-workspace 5; }
+    Mod+F1 { move-column-to-workspace 1; }
+    Mod+F2 { move-column-to-workspace 2; }
+    Mod+F3 { move-column-to-workspace 3; }
+    Mod+F4 { move-column-to-workspace 4; }
+    Mod+F5 { move-column-to-workspace 5; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
