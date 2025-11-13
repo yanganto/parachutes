@@ -24,7 +24,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'Konfekt/FastFold'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'jiangmiao/auto-pairs'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+" Need to pack with nix
+" Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'gyim/vim-boxdraw'
 Plug 'embear/vim-localvimrc'
 
@@ -54,6 +55,7 @@ Plug 'jvirtanen/vim-hcl'
 " Plug 'posva/vim-vue'
 Plug 'hashivim/vim-terraform'
 Plug 'yorinasub17/vim-terragrunt'
+Plug 'armannikoyan/rusty'
 Plug 'yanganto/move.vim', {'branch': 'sui-move'}
 
 " Linter
@@ -78,7 +80,6 @@ call plug#end()
 """"""""""""""""""
 
 set encoding=utf-8
-set termencoding=utf-8
 set langmenu=zh_TW.UTF-8
 set guifont=Fira\ Code:h12
 
@@ -315,20 +316,51 @@ let g:table_mode_corner='|'
 let g:rustfmt_autosave = 1
 
 :lua << END
-  require'lspconfig'.rust_analyzer.setup {
-      diagnostics = {
-        enable = true,
-        enableExperimental = true,
-    },
+  vim.lsp.config.rust_analyzer = {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      cmd = { 'rust-analyzer' },
+      filetypes = { 'rust' },
+      root_markers = {"Cargo.toml", ".git"},
+      single_file_support = true,
+      settings = {
+          ['rust-analyzer'] = {
+              diagnostics = {
+                  enable = true;
+              }
+          }
+      },
+      before_init = function(init_params, config)
+          if config.settings and config.settings['rust-analyzer'] then
+              init_params.initializationOptions = config.settings['rust-analyzer']
+          end
+      end,
   }
+  vim.lsp.enable("rust_analyzer")
+  require('rusty').setup ({
+      italic_comments = true,
+      colors = {
+        foreground = "#c5c8c6",
+        background = "#1d1f21",
+        selection = "#373b41",
+        line = "#282a2e",
+        comment = "#969896",
+        red = "#cc6666",
+        orange = "#de935f",
+        yellow = "#f0c674",
+        green = "#b5bd68",
+        aqua = "#8abeb7",
+        blue = "#81a2be",
+        purple = "#b294bb",
+        window = "#4d5057",
+      },
+  })
   require("lsp-colors").setup({
     Error = "#db4b4b",
     Warning = "#e0af68",
     Information = "#0db9d7",
     Hint = "#10B981"
   })
-  require'lspconfig'.tsserver.setup {}
-  " require'lspconfig'.pyls.setup {}
   require'lspfuzzy'.setup {
     methods = 'all',
     jump_one = true,
