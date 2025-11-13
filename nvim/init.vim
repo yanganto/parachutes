@@ -54,6 +54,7 @@ Plug 'jvirtanen/vim-hcl'
 " Plug 'posva/vim-vue'
 Plug 'hashivim/vim-terraform'
 Plug 'yorinasub17/vim-terragrunt'
+Plug 'armannikoyan/rusty'
 Plug 'yanganto/move.vim', {'branch': 'sui-move'}
 
 " Linter
@@ -78,7 +79,6 @@ call plug#end()
 """"""""""""""""""
 
 set encoding=utf-8
-set termencoding=utf-8
 set langmenu=zh_TW.UTF-8
 set guifont=Fira\ Code:h12
 
@@ -315,6 +315,24 @@ let g:table_mode_corner='|'
 let g:rustfmt_autosave = 1
 
 :lua << END
+  require('rusty').setup ({
+      italic_comments = true,
+      colors = {
+        foreground = "#c5c8c6",
+        background = "#1d1f21",
+        selection = "#373b41",
+        line = "#282a2e",
+        comment = "#969896",
+        red = "#cc6666",
+        orange = "#de935f",
+        yellow = "#f0c674",
+        green = "#b5bd68",
+        aqua = "#8abeb7",
+        blue = "#81a2be",
+        purple = "#b294bb",
+        window = "#4d5057",
+      },
+  })
   require'lspconfig'.rust_analyzer.setup {
       diagnostics = {
         enable = true,
@@ -327,8 +345,7 @@ let g:rustfmt_autosave = 1
     Information = "#0db9d7",
     Hint = "#10B981"
   })
-  require'lspconfig'.tsserver.setup {}
-  " require'lspconfig'.pyls.setup {}
+  require'lspconfig'.ts_ls.setup {}
   require'lspfuzzy'.setup {
     methods = 'all',
     jump_one = true,
