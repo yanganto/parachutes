@@ -60,7 +60,6 @@ Plug 'yanganto/move.vim', {'branch': 'sui-move'}
 " Linter
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-" Plug 'nvim-lua/completion-nvim'
 Plug 'heavenshell/vim-tslint'
 Plug 'ojroques/nvim-lspfuzzy'
 
@@ -70,7 +69,23 @@ Plug 'yanganto/nvim-translate-byte-literal', {'branch': 'master'}
 
 Plug 'editorconfig/editorconfig-vim'
 
+" AI - Avante
+" Avante Deps
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
 Plug 'folke/lsp-colors.nvim'
+
+" Optional deps
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+" Plug 'HakonHarnes/img-clip.nvim'
+" Plug 'zbirenbaum/copilot.lua'
+" Plug 'stevearc/dressing.nvim' " for enhanced input UI
+" Plug 'folke/snacks.nvim' " for modern input UI
+
+Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
 
 call plug#end()
 
@@ -384,6 +399,7 @@ let g:rustfmt_autosave = 1
      snippets_nvim = true;
     }
   }
+  require('avante').setup({})
 END
 
 autocmd Filetype python setlocal omnifunc=v:lua.vim.lsp.omnifunc
