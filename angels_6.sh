@@ -33,10 +33,10 @@ fi
 curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- array
 curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install | bash -s -- sdadonkey/rime-english
 mkdir -p ~/.config/ibus/rime/
-ln rime.default.yaml ~/.config/ibus/rime/default.yaml
+ln -s rime.default.yaml ~/.config/ibus/rime/default.customyaml
 mkdir -p ~/.config/fcitx5/rime/
-ln rime.default.yaml ~/.config/fcitx5/rime/default.yaml
-ln fcitx5_profile ~/.config/fcitx5/profile
+ln -s rime.default.yaml ~/.config/fcitx5/rime/default.custom.yaml
+ln -s fcitx5_profile ~/.config/fcitx5/profile
 
 mkdir -p ~/.config/rofi
 ln config.rasi ~/.config/rofi/config.rasi
