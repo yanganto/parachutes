@@ -65,7 +65,16 @@ PROMPT=$'%{\e[0;34m%}%B┌─[%b%{\e[0m%}%{\e[1;$(user_color)m%}%n%{\e[1;34m%}@%
 %{\e[0;34m%}%B└─%B[%{\e[1;35m%}$(virtual_env_promp)%{\e[0;34m%}%B] <$(_omz_git_prompt_info)>%{\e[0m%}%b '
 PS2=$' \e[0;34m%}%B>%{\e[0m%}%b '
 
-export GNUPGHOME=~/.gnupg/trezor
+MSG=""
+
+if command -v 1password &> /dev/null; then
+    # For pull/push
+    [ -S "$HOME/.1password/agent.sock" ] || MSG="${MSG}\n !! Dont fogot open enable ssh in 1password"
+    export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
+
+    # For commit signning
+    export GPG_TTY=$(tty)
+fi
 
 # Rust
 #export SCCACHE_DIR=~/data/sccache
@@ -159,3 +168,4 @@ set -o emacs
 fpath=(~/.zsh/functions $fpath)
 neofetch
 
+echo $MSG
