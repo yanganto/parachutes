@@ -35,6 +35,14 @@ function virtual_env_promp () {
     fi
 }
 
+function 1() {
+    1password --ozone-platform=wayland --enable-features=UseOzonePlatform
+}
+
+function f() {
+    fcitx5 -d -r
+}
+
 function secho() {
     echo -e "\e[38;5;82m[SUCCESS]\e[0m $1"
 }
@@ -168,4 +176,6 @@ set -o emacs
 fpath=(~/.zsh/functions $fpath)
 neofetch
 
-echo $MSG
+if [[ -n "$MSG" ]]; then
+    eecho $MSG
+fi
