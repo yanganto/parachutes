@@ -1,5 +1,9 @@
 setopt PROMPT_SUBST
 
+if [[ $OSTYPE == darwin* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+fi
+
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export ZSH_THEME_GIT_PROMPT_DIRTY="*"
 export HISTFILE=$HOME/.zsh_history
