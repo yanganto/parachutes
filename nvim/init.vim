@@ -28,6 +28,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'gyim/vim-boxdraw'
 Plug 'embear/vim-localvimrc'
+Plug 'sindrets/diffview.nvim'
 
 " Version Control Helper
 Plug 'airblade/vim-gitgutter'
@@ -57,6 +58,9 @@ Plug 'hashivim/vim-terraform'
 Plug 'yorinasub17/vim-terragrunt'
 Plug 'armannikoyan/rusty'
 Plug 'yanganto/move.vim', {'branch': 'sui-move'}
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'earthly/earthly.vim', { 'branch': 'main' }
+
 
 " Linter
 Plug 'neovim/nvim-lspconfig'
