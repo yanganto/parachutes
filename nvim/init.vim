@@ -117,7 +117,30 @@ function! ToggleLineNumberStyle()
   endif
 endfunction
 
+let g:conceallevel = 3
+set conceallevel=3
+function! ToggleConcealLevel()
+  if g:conceallevel == 0
+    echo "Set conceallevel: 1 "
+    set conceallevel=1
+    let g:conceallevel = 1
+  elseif g:conceallevel == 1
+    echo "Set conceallevel: 2"
+    set conceallevel=2
+    let g:conceallevel = 2
+  elseif g:conceallevel == 2
+    echo "Set conceallevel: 3"
+    set conceallevel=3
+    let g:conceallevel = 3
+  else
+    echo "Set conceallevel: 0"
+    set conceallevel=0
+    let g:conceallevel = 0
+  endif
+endfunction
+
 map <F12> <Esc>:call ToggleLineNumberStyle()<CR>
+map <F11> <Esc>:call ToggleConcealLevel()<CR>
 set ts=4 sts=4 sw=4 expandtab
 autocmd Filetype text setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
