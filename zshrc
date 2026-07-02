@@ -81,7 +81,7 @@ MSG=""
 
 if command -v 1password &> /dev/null; then
     # For pull/push
-    [ -S "$HOME/.1password/agent.sock" ] || MSG="${MSG}\n !! Dont fogot open enable ssh in 1password"
+    [ -S "$HOME/.1password/agent.sock" ] || MSG="${MSG}\n !! Dont forgot open enable ssh in 1password"
     export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
 
     # For commit signning

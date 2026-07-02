@@ -102,10 +102,10 @@ output "eDP-1" {
     // With AR glasses
     // position x=0 y=618
 
-    // With extened monitor
+    // With extended monitor
     // position x=0 y=1080
 
-    // With Left extened monitor
+    // With Left extended monitor
     // position x=1920 y=0
 
     // With office monitor
@@ -144,7 +144,7 @@ output "DP-2" {
     position x=0 y=0
 }
 
-// With extened monitor
+// With extended monitor
 output "HDMI-A-1" {
     mode "1920x1080@60.000"
     scale 1
