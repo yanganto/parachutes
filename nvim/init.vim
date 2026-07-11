@@ -283,6 +283,9 @@ let g:translate_display_option='status'
 " gutentags
 let g:gutentags_cache_dir = '~/.cache/gutentags'
 
+" Call local AI
+map <F7> <Esc>:'<,'>Gen<CR>
+
 " Vista
 " let g:vista_default_executive = 'TagbarToggle'
 let g:vista_mode = "none"
