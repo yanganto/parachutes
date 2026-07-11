@@ -432,7 +432,7 @@ let g:rustfmt_autosave = 1
     }
   }
   require('gen').setup({
-    model = "qwen3-32k", -- The default model to use.
+    model = "qwen3", -- The default model to use.
     quit_map = "q", -- set keymap to close the response window
     retry_map = "<c-r>", -- set keymap to re-send the current prompt
     accept_map = "<c-cr>", -- set keymap to replace the previous selection with the last result
