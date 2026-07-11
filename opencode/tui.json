@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "leader_timeout": 1000,
+  "keybinds": {
+    "leader": "ctrl+c",
+    "app_exit": "<leader>ctrl+c",
+    "session_interrupt": "escape",
+    "sidebar_toggle": "ctrl+s",
+    "command_list": "<leader>l",
+    "history_previous": "ctrl+p",
+    "history_next": "ctrl+n",
+    "messages_copy": "ctrl+y",
+    "which_key_toggle": "ctrl+h",
+    "input_clear": "ctrl+l",
+    "messages_line_up": "ctrl+alt+y,<leader>k",
+    "messages_line_down": "ctrl+alt+e,<leader>j",
+    "dialog.select.prev": "up,ctrl+p,k",
+    "dialog.select.next": "down,ctrl+n,j",
+    "prompt.autocomplete.prev": "up,ctrl+p,k",
+    "prompt.autocomplete.next": "down,ctrl+n,j"
+  }
+}
+
