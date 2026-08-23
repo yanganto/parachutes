@@ -10,6 +10,7 @@ pkgs.mkShell {
   '';
 
   nativeBuildInputs = with pkgs; [
+    rustup
     cargo
     publish-crate
   ];
