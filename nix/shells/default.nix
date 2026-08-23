@@ -24,6 +24,7 @@
         default = config.devShells.middle;
         middle = import ./middle.nix { inherit lib pkgs PROMPT; };
         nettest = import ./nettest.nix { inherit lib pkgs PROMPT; };
+        ci = import ./ci.nix { inherit lib pkgs PROMPT; };
       };
       formatter = pkgs.nixfmt-rfc-style;
     };
