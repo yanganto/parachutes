@@ -16,7 +16,10 @@
     version = "1.13.1";
   };
   neovim = {
-    dependencies = [ "msgpack" "multi_json" ];
+    dependencies = [
+      "msgpack"
+      "multi_json"
+    ];
     source = {
       remotes = [ "https://rubygems.org" ];
       sha256 = "07scrdfk7pyn5jgx5m2yajdqpbdv42833vbw568qqag6xp99j3yk";

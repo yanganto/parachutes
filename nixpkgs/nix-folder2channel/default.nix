@@ -1,4 +1,10 @@
-{ stdenv, writeScriptBin, buildEnv, git, busybox }:
+{
+  stdenv,
+  writeScriptBin,
+  buildEnv,
+  git,
+  busybox,
+}:
 let
   nix-folder2channel-script = writeScriptBin "nix-folder2channel" ''
     #!${stdenv.shell}
@@ -25,7 +31,10 @@ in
     paths = [ nix-folder2channel-script ];
     meta = with stdenv.lib; {
       description = "Help developers set nixos channel from source code";
-      maintainers = with maintainers; [ yanganto SuperSandro2000 ];
+      maintainers = with maintainers; [
+        yanganto
+        SuperSandro2000
+      ];
       platforms = platforms.unix;
     };
   };

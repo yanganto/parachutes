@@ -1,5 +1,10 @@
-{ lib, pkgs, PROMPT ? "", ... }:
-let 
+{
+  lib,
+  pkgs,
+  PROMPT ? "",
+  ...
+}:
+let
   publish-crate = pkgs.writeShellScriptBin "publish-crate" (lib.readFile ../scripts/publish-crate.sh);
 in
 pkgs.mkShell {

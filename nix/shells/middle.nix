@@ -1,5 +1,10 @@
-{ lib, pkgs, PROMPT ? "", ... }:
-let 
+{
+  lib,
+  pkgs,
+  PROMPT ? "",
+  ...
+}:
+let
   enable_ap = pkgs.writeShellScriptBin "enable_ap" (lib.readFile ../scripts/enable_ap.sh);
   dump = pkgs.writeShellScriptBin "dump" (lib.readFile ../scripts/dump.sh);
 in
@@ -13,7 +18,7 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     iw
     hostapd
-    dnsmasq 
+    dnsmasq
     tcpdump
 
     # Scripts

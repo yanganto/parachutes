@@ -1,4 +1,16 @@
-{ lib, stdenv, fetchFromGitHub, xorgserver, xinit, xrandr, nvidia_x11, mesa, makeWrapper, bbswitch, acpi }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  xorgserver,
+  xinit,
+  xrandr,
+  nvidia_x11,
+  mesa,
+  makeWrapper,
+  bbswitch,
+  acpi,
+}:
 
 stdenv.mkDerivation rec {
   pname = "nvidia-xrun";
@@ -10,7 +22,16 @@ stdenv.mkDerivation rec {
     rev = "${version}";
     sha256 = "1waay559cnmrxp1qr3cdm63km392rcqp1l65idn08gxw3ndp1zq4";
   };
-  buildInputs = [ xorgserver xinit xrandr nvidia_x11 mesa makeWrapper bbswitch acpi ];
+  buildInputs = [
+    xorgserver
+    xinit
+    xrandr
+    nvidia_x11
+    mesa
+    makeWrapper
+    bbswitch
+    acpi
+  ];
 
   installPhase = ''
     mkdir -p "$out/bin"
@@ -28,9 +49,10 @@ stdenv.mkDerivation rec {
     "wrapProgram $out/bin/nvidia-xrun --prefix PATH : ${path}";
 
   meta = with lib; {
-    description = ''These utility scripts aim to make the life easier for nvidia cards users.
-      It started with a revelation that bumblebee in current state offers very poor performance.
-      This solution offers a bit more complicated procedure but offers a full GPU utilization'';
+    description = ''
+      These utility scripts aim to make the life easier for nvidia cards users.
+            It started with a revelation that bumblebee in current state offers very poor performance.
+            This solution offers a bit more complicated procedure but offers a full GPU utilization'';
     homepage = "https://github.com/Witko/nvidia-xrun";
     license = licenses.gpl2;
     maintainers = with maintainers; [ yanganto ];

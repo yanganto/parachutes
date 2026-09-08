@@ -1,4 +1,8 @@
-{ stdenv, fetchFromGitHub, pythonPackages }:
+{
+  stdenv,
+  fetchFromGitHub,
+  pythonPackages,
+}:
 
 with stdenv.lib;
 

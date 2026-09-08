@@ -7,7 +7,7 @@
       system,
       ...
     }:
-    let 
+    let
       PROMPT = ''
         _git_ps1() {
             git rev-parse --is-inside-work-tree &>/dev/null || return

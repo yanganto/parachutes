@@ -1,52 +1,67 @@
-{ stdenv
-, fetchFromGitHub
-, cmake
-, gettext
-, msgpack
-, libtermkey
-, libiconv
-, libuv
-, lua
-, ncurses
-, pkgconfig
-, unibilium
-, xsel
-, gperf
-, libvterm-neovim
-, tree-sitter
-, glibcLocales ? null
-, procps ? null
+{
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  gettext,
+  msgpack,
+  libtermkey,
+  libiconv,
+  libuv,
+  lua,
+  ncurses,
+  pkgconfig,
+  unibilium,
+  xsel,
+  gperf,
+  libvterm-neovim,
+  tree-sitter,
+  glibcLocales ? null,
+  procps ? null,
 
   # now defaults to false because some tests can be flaky (clipboard etc)
-, doCheck ? false
-, nodejs ? null
-, fish ? null
-, python ? null
+  doCheck ? false,
+  nodejs ? null,
+  fish ? null,
+  python ? null,
 }:
 
 with stdenv.lib;
 let
-  neovimLuaEnv = lua.withPackages (ps:
-    (with ps; [ lpeg luabitop mpack ]
+  neovimLuaEnv = lua.withPackages (
+    ps:
+    (
+      with ps;
+      [
+        lpeg
+        luabitop
+        mpack
+      ]
       ++ optionals doCheck [
-      nvim-client
-      luv
-      coxpcall
-      busted
-      luafilesystem
-      penlight
-      inspect
-    ]
-    ));
+        nvim-client
+        luv
+        coxpcall
+        busted
+        luafilesystem
+        penlight
+        inspect
+      ]
+    )
+  );
 
-  pyEnv = python.withPackages (ps: [ ps.pynvim ps.msgpack ]);
+  pyEnv = python.withPackages (ps: [
+    ps.pynvim
+    ps.msgpack
+  ]);
 
   # FIXME: this is very messy and strange.
   # see https://github.com/NixOS/nixpkgs/pull/80528
   luv = lua.pkgs.luv;
-  luvpath = with builtins ; if stdenv.isDarwin
-  then "${luv.libluv}/lib/lua/${lua.luaversion}/libluv.${head (match "([0-9.]+).*" luv.version)}.dylib"
-  else "${luv}/lib/lua/${lua.luaversion}/luv.so";
+  luvpath =
+    with builtins;
+    if stdenv.isDarwin then
+      "${luv.libluv}/lib/lua/${lua.luaversion}/libluv.${head (match "([0-9.]+).*" luv.version)}.dylib"
+    else
+      "${luv}/lib/lua/${lua.luaversion}/luv.so";
 
 in
 stdenv.mkDerivation rec {
@@ -81,9 +96,12 @@ stdenv.mkDerivation rec {
     neovimLuaEnv
     unibilium
     tree-sitter
-  ] ++ optional stdenv.isDarwin libiconv
-  ++ optionals doCheck [ glibcLocales procps ]
-  ;
+  ]
+  ++ optional stdenv.isDarwin libiconv
+  ++ optionals doCheck [
+    glibcLocales
+    procps
+  ];
 
   inherit doCheck;
 
@@ -106,7 +124,6 @@ stdenv.mkDerivation rec {
     pyEnv # for src/clint.py
   ];
 
-
   # nvim --version output retains compilation flags and references to build tools
   postPatch = ''
     substituteInPlace src/nvim/version.c --replace NVIM_VERSION_CFLAGS "";
@@ -120,8 +137,7 @@ stdenv.mkDerivation rec {
     "-DLIBLUV_LIBRARY=${luvpath}"
   ]
   ++ optional doCheck "-DBUSTED_PRG=${neovimLuaEnv}/bin/busted"
-  ++ optional (!lua.pkgs.isLuaJIT) "-DPREFER_LUA=ON"
-  ;
+  ++ optional (!lua.pkgs.isLuaJIT) "-DPREFER_LUA=ON";
 
   # triggers on buffer overflow bug while running tests
   hardeningDisable = [ "fortify" ];
@@ -155,8 +171,15 @@ stdenv.mkDerivation rec {
     # Contributions committed after b17d96 are licensed under Apache 2.0 unless
     # those contributions were copied from Vim (identified in the commit logs
     # by the vim-patch token). See LICENSE for details."
-    license = with licenses; [ asl20 vim ];
-    maintainers = with maintainers; [ manveru rvolosatovs ma27 ];
+    license = with licenses; [
+      asl20
+      vim
+    ];
+    maintainers = with maintainers; [
+      manveru
+      rvolosatovs
+      ma27
+    ];
     platforms = platforms.unix;
   };
 }

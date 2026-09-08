@@ -1,4 +1,10 @@
-{ stdenv, rustPlatform, fetchFromGitHub, gtk, webkitgtk }:
+{
+  stdenv,
+  rustPlatform,
+  fetchFromGitHub,
+  gtk,
+  webkitgtk,
+}:
 
 rustPlatform.buildRustPackage rec {
   pname = "gnvim-unwrapped";
@@ -13,7 +19,10 @@ rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "1fyn8nsabzrfl9ykf2gk2p8if0yjp6k0ybrmp0pw67pbwaxpb9ym";
 
-  buildInputs = [ gtk webkitgtk ];
+  buildInputs = [
+    gtk
+    webkitgtk
+  ];
 
   # The default build script tries to get the version through Git, so we
   # replace it
