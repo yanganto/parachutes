@@ -1,0 +1,106 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3-32k": { 
+            "name": "Qwen 3 14B (local)",
+            "limit": { "context": 32768, "output": 8192 }
+        },
+        "gpt-oss:20b": { "name": "GPT-OSS 20B (local)" },
+        "deepseek-r1:1.5b": { "name": "Deepseek R1 (local)" },
+        "qwen2.5-coder": { "name": "Qwen 2.5 Coder (local)" },
+        "glm-4.7-flash": { "name": "Glm 4.7 Flash (local)" },
+        "llama3.2": { "name": "Llama 3.2 (local)" }
+      }
+    }
+  },
+  "permission": {
+    "edit": "ask",
+    "bash": {
+      // Everything asks by default; only listed read-only commands run freely
+      "*": "ask",
+
+      // git — read-only
+      "git status*": "allow",
+      "git log*": "allow",
+      "git diff*": "allow",
+      "git show*": "allow",
+      "git rev-parse*": "allow",
+      "git ls-files*": "allow",
+      "git ls-remote*": "allow",
+      "git blame*": "allow",
+      "git grep*": "allow",
+      "git cat-file*": "allow",
+      "git merge-base*": "allow",
+      "git describe*": "allow",
+      "git shortlog*": "allow",
+      "git reflog": "allow",
+      "git reflog show*": "allow",
+      "git branch": "allow",
+      "git branch --list*": "allow",
+      "git branch -a*": "allow",
+      "git branch -v*": "allow",
+      "git branch -vv*": "allow",
+      "git branch --show-current*": "allow",
+      "git branch --contains*": "allow",
+      "git tag": "allow",
+      "git tag -l*": "allow",
+      "git tag --list*": "allow",
+      "git tag -n*": "allow",
+      "git remote": "allow",
+      "git remote -v*": "allow",
+      "git remote show*": "allow",
+      "git remote get-url*": "allow",
+      "git stash list*": "allow",
+      "git worktree list*": "allow",
+      "git config --get*": "allow",
+      "git config --list*": "allow",
+      "git config -l*": "allow",
+
+      // gh — read-only
+      "gh pr view*": "allow",
+      "gh pr list*": "allow",
+      "gh pr diff*": "allow",
+      "gh pr checks*": "allow",
+      "gh pr status*": "allow",
+      "gh issue view*": "allow",
+      "gh issue list*": "allow",
+      "gh issue status*": "allow",
+      "gh run list*": "allow",
+      "gh run view*": "allow",
+      "gh run watch*": "allow",
+      "gh repo view*": "allow",
+      "gh auth status*": "allow",
+
+      // build tooling
+      "cargo *": "allow",
+      "nix *": "allow",
+      "rustfmt *": "allow",
+      "nixfmt *": "allow",
+
+      // write guards — later rules win, so these force a prompt even when a
+      // write is wrapped inside an allowed prefix (nix develop -c …, cargo run -- …)
+      "cargo run -- *": "ask",
+      "git branch * -d*": "ask",
+      "git branch * -D*": "ask",
+      "git branch * -m*": "ask",
+      "git branch * -M*": "ask",
+      "git tag * -d*": "ask",
+      "git tag * -f*": "ask",
+      "* git add*": "ask",
+      "* git commit*": "ask",
+      "* git push*": "ask",
+      "* gh api *": "ask",
+      "* gh pr create*": "ask",
+      "* gh pr merge*": "ask",
+      "* gh pr edit*": "ask",
+      "* gh release create*": "ask"
+    }
+  }
+}
