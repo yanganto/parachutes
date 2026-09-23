@@ -2,6 +2,7 @@
   perSystem =
     {
       config,
+      inputs',
       lib,
       pkgs,
       system,
@@ -24,6 +25,10 @@
         default = config.devShells.middle;
         middle = import ./middle.nix { inherit lib pkgs PROMPT; };
         nettest = import ./nettest.nix { inherit lib pkgs PROMPT; };
+        netdbg = import ./netdbg.nix {
+          inherit lib pkgs PROMPT;
+          plotnetcfg = inputs'.plotnetcfg.packages.plotnetcfg;
+        };
         ci = import ./ci.nix { inherit lib pkgs PROMPT; };
       };
       formatter = pkgs.nixfmt-rfc-style;

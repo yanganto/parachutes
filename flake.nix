@@ -6,6 +6,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    plotnetcfg.url = "github:yanganto/plotnetcfg/flake";
   };
 
   outputs =

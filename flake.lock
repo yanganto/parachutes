@@ -49,10 +49,46 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1790046670,
+        "narHash": "sha256-MYiI+CzL0tuWgRPjGsKCDHqYs2T3OzMlMQWOYWG0qso=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6774f7bc253789b113a4f39285dc0fa100abeacc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plotnetcfg": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1790144676,
+        "narHash": "sha256-MKZpv6jG9g1caeGsHAao5yYUrD5lFsGAWtmFrKnKjeU=",
+        "owner": "yanganto",
+        "repo": "plotnetcfg",
+        "rev": "0e7601ce990d0b3205c0bd997f87416222482819",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yanganto",
+        "ref": "flake",
+        "repo": "plotnetcfg",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
+        "plotnetcfg": "plotnetcfg",
         "treefmt-nix": "treefmt-nix"
       }
     },

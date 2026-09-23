@@ -4,3 +4,4 @@ nvim/plugged
 .direnv
 MyWM/target
 MyWM/Cargo.lock
+topology.svg
