@@ -20,13 +20,21 @@ attrs:
 if !attrs ? name then
   throw "myMkShell: 'name' is required (exported as DEVSHELL and shown in the prompt)"
 else
+  let
+    myScripts = attrs.myScripts or [ ];
+  in
   mkShell (
-    attrs
+    (builtins.removeAttrs attrs [ "myScripts" ])
     // {
+      buildInputs = (attrs.buildInputs or [ ]) ++ myScripts;
       shellHook = ''
         export DEVSHELL=${lib.escapeShellArg attrs.name}
         ${PROMPT}
         ${attrs.shellHook or ""}
+      ''
+      + lib.optionalString (myScripts != [ ]) ''
+        echo "Scripts:"
+        ${builtins.concatStringsSep "\n" (map (s: "echo \"  ${s.name}\"") myScripts)}
       '';
     }
   )
