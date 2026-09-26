@@ -1,5 +1,6 @@
 {
   packageOverrides = pkgs: rec {
+    myMkShell = pkgs.callPackage ./myMkShell { };
     nix-folder2channel = pkgs.callPackage ./nix-folder2channel { };
     nvidia-xrun = pkgs.callPackage ./nvidia-xrun {
       inherit (pkgs.linuxPackages) nvidia_x11 bbswitch;
