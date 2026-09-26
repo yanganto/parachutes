@@ -1,22 +1,16 @@
 {
   lib,
   pkgs,
-  PROMPT ? "",
   ...
 }:
 let
   publish-crate = pkgs.writeShellScriptBin "publish-crate" (lib.readFile ../scripts/publish-crate.sh);
 in
-pkgs.mkShell {
+pkgs.myMkShell {
   name = "ci";
-  shellHook = ''
-    export DEVSHELL=ci
-    ${PROMPT}
-  '';
-
+  myScripts = [ publish-crate ];
   nativeBuildInputs = with pkgs; [
     rustup
     cargo
-    publish-crate
   ];
 }

@@ -1,8 +1,6 @@
 {
-  lib,
   pkgs,
   plotnetcfg,
-  PROMPT ? "",
   ...
 }:
 let
@@ -10,18 +8,11 @@ let
     exec ${pkgs.python3}/bin/python3 ${../scripts/topo.py} "$@"
   '';
 in
-pkgs.mkShell {
+pkgs.myMkShell {
   name = "netdbg";
-  shellHook = ''
-    export DEVSHELL=netdbg
-    ${PROMPT}
-  '';
-
+  myScripts = [ topo ];
   nativeBuildInputs = with pkgs; [
     plotnetcfg
     graphviz
-
-    # Scripts
-    topo
   ];
 }
