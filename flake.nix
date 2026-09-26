@@ -24,6 +24,8 @@
         ./nix/shells/default.nix
       ];
 
+      flake.overlays.myMkShell = import ./nixpkgs/myMkShell/overlay.nix;
+
       perSystem =
         {
           config,
@@ -36,11 +38,7 @@
           _module.args = {
             pkgs = import inputs.nixpkgs {
               inherit system;
-              overlays = [
-                (_: prev: {
-                  myMkShell = prev.callPackage ./nixpkgs/myMkShell { };
-                })
-              ];
+              overlays = [ (import ./nixpkgs/myMkShell/overlay.nix) ];
               config.allowUnfree = true;
             };
           };
