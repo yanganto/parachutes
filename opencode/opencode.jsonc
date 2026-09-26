@@ -1,5 +1,9 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "plan": { "color": "#3B82F6" },
+    "build": { "color": "#F97316" }
+  },
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
@@ -78,6 +82,20 @@
       "gh repo view*": "allow",
       "gh auth status*": "allow",
 
+      // read-only inspection and stream editing
+      "ls": "allow",
+      "ls *": "allow",
+      "rg": "allow",
+      "rg *": "allow",
+      "head": "allow",
+      "head *": "allow",
+      "find": "allow",
+      "find *": "allow",
+      "sed": "allow",
+      "sed *": "allow",
+      "awk": "allow",
+      "awk *": "allow",
+
       // build tooling
       "cargo *": "allow",
       "nix *": "allow",
@@ -100,7 +118,29 @@
       "* gh pr create*": "ask",
       "* gh pr merge*": "ask",
       "* gh pr edit*": "ask",
-      "* gh release create*": "ask"
+      "* gh release create*": "ask",
+
+      // find / sed write guards — deletion, exec, in-place edits
+      "find * -delete*": "ask",
+      "find * -exec*": "ask",
+      "find * -ok*": "ask",
+      "find * -fls*": "ask",
+      "find * -fprint*": "ask",
+      "* find * -delete*": "ask",
+      "* find * -exec*": "ask",
+      "* find * -ok*": "ask",
+      "* find * -fls*": "ask",
+      "* find * -fprint*": "ask",
+      "sed * -i*": "ask",
+      "sed * --in-place*": "ask",
+      "* sed * -i*": "ask",
+      "* sed * --in-place*": "ask",
+
+      // awk write guards — in-place edits, system() calls
+      "awk * -i inplace*": "ask",
+      "awk * system(*": "ask",
+      "* awk * -i inplace*": "ask",
+      "* awk * system(*": "ask"
     }
   }
 }

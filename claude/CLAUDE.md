@@ -1,6 +1,6 @@
 - Using Rust and Nix for every project, if there is devshell please work with `nix develop -c `.  Please respond in straightforward and in simple English phrases.  
 - Investigate read-only first, and never commit unless I ask
-- Please do every code change follow the linter, you can do `nix develop -c cargo fmt` or `cargo fmt` to double check on the Rust code. 
+- Please do every code change follow the linter, you can do `nix develop -c cargo fmt` or `cargo fmt` to double check on the Rust code, but no need on the all project.  Apply linter on the members with code change in the workspace.
 - If asking `g msg w body`, that mean I want a git commit message with body in short for the code change.
 - Some chars to shorten phrases
   * g: git
