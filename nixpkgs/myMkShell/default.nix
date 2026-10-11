@@ -15,6 +15,43 @@ let
     export PS1='\[\e[33m\][$DEVSHELL] \w $(_git_ps1) \$\[\e[0m\] '
     export PS4=$'\033[31m ⊙ \033[0m'
   '';
+
+  extractDescription = script:
+    let
+      scriptPath = "${script}/bin/${script.name}";
+      content = builtins.readFile scriptPath;
+      lines = lib.splitString "\n" content;
+      findDescription = lines: idx:
+        if idx >= builtins.length lines then
+          null
+        else
+          let
+            line = builtins.elemAt lines idx;
+            hasContent = lib.hasPrefix "#" (lib.removePrefix " " (lib.removePrefix "\t" line));
+            notShebang = !lib.hasPrefix "#!" line;
+          in
+          if hasContent && notShebang then
+            let
+              trimmed = lib.removePrefix "#" (lib.removePrefix " " (lib.removePrefix "\t" line));
+            in
+            lib.removePrefix " " trimmed
+          else
+            findDescription lines (idx + 1);
+    in
+    findDescription lines 0;
+
+  formatScript = script:
+    let
+      desc = extractDescription script;
+      escapedDesc = if desc != null then
+        builtins.replaceStrings ["\"" "\\"] ["\\\"" "\\\\"] desc
+      else
+        null;
+    in
+    if escapedDesc != null then
+      "echo \"  ${script.name} - ${escapedDesc}\""
+    else
+      "echo \"  ${script.name}\"";
 in
 attrs:
 if !attrs ? name then
@@ -34,7 +71,7 @@ else
       ''
       + lib.optionalString (myScripts != [ ]) ''
         echo "Scripts:"
-        ${builtins.concatStringsSep "\n" (map (s: "echo \"  ${s.name}\"") myScripts)}
+        ${builtins.concatStringsSep "\n" (map formatScript myScripts)}
       '';
     }
   )
