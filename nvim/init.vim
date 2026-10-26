@@ -72,6 +72,19 @@ Plug 'ojroques/nvim-lspfuzzy'
 " Helper
 Plug 'yanganto/nvim-translate-byte-literal', {'branch': 'master'}
 Plug 'David-Kunz/gen.nvim'
+Plug 'yetone/avante.nvim'
+" " Deps
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+" Plug 'MeanderingProgrammer/render-markdown.nvim'
+
+" " Optional deps
+" Plug 'hrsh7th/nvim-cmp'
+" Plug 'nvim-tree/nvim-web-devicons' "or Plug 'echasnovski/mini.icons'
+" Plug 'HakonHarnes/img-clip.nvim'
+" Plug 'zbirenbaum/copilot.lua'
+" Plug 'stevearc/dressing.nvim' " for enhanced input UI
+" Plug 'folke/snacks.nvim' " for modern input UI
 
 " TODO: fix this on Nix
 Plug 'yanganto/nvim-translate', {'branch': 'master'}
@@ -286,6 +299,9 @@ let g:gutentags_cache_dir = '~/.cache/gutentags'
 " Call local AI
 map <F7> <Esc>:'<,'>Gen<CR>
 
+" Call Diff
+map <F3> <ESC>:DiffviewOpen 
+
 " Vista
 " let g:vista_default_executive = 'TagbarToggle'
 let g:vista_mode = "none"
@@ -345,7 +361,7 @@ let g:rust_fold = 0
 let g:table_mode_corner='|'
 
 " Rust fmt
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 
 :lua << END
   vim.lsp.config.rust_analyzer = {
