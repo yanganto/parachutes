@@ -17,6 +17,8 @@
           plotnetcfg = inputs'.plotnetcfg.packages.plotnetcfg;
         };
         ci = import ./ci.nix { inherit lib pkgs; };
+        android-dev = import ./android-dev.nix { inherit pkgs; };
+        lightway-ci = import ./lightway-ci.nix { inherit pkgs; };
       };
       formatter = pkgs.nixfmt-rfc-style;
     };
