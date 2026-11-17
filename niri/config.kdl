@@ -420,6 +420,8 @@ binds {
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
+    // MouseMiddle repeat=false { toggle-overview; }
+
     Alt+Tab  { focus-column-left; }
     Alt+Q  { focus-column-right; }
 
